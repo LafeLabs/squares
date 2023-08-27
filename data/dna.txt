@@ -1,0 +1,37 @@
+{
+    "html": [
+        "README.md",
+        "fork.html",
+        "geometron.js",
+        "hypercube.html",
+        "index-board1.txt",
+        "index.html",
+        "readme.html",
+        "readmeeditor.html",
+        "trashmagic.css",
+        "trashmagic.js",
+        "trashrobot-board1.txt",
+        "trashrobot.html",
+        "webdestroyer.html",
+        "webeditor.html"
+    ],
+    "data": [
+        "dna.txt",
+        "scrollset.txt"
+    ],
+    "php": [
+        "copy.txt",
+        "deletefile.txt",
+        "dir.txt",
+        "dnagenerator.txt",
+        "editor.txt",
+        "fileloader.txt",
+        "filesaver.txt",
+        "mkdir.txt",
+        "pngsave.txt",
+        "rdelete.txt",
+        "replicator.txt",
+        "text2php.txt",
+        "uploadimage.txt"
+    ]
+}
