@@ -5,6 +5,8 @@
  - [index.html](index.html)
  - [http://localhost/](http://localhost/)
  - [https://www.southbroadway.net](https://www.southbroadway.net)
+ - [https://www.colfax.site](https://www.colfax.site)
+ - [https://www.sloanslake.art](https://www.sloanslake.art)
 
 ![screen shot of trash magic app which has handwriting reading "as abov, so below"](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/square-above.png)
 
