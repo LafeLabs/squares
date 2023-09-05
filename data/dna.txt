@@ -1,6 +1,7 @@
 {
     "html": [
         "README.md",
+        "cubeworld.html",
         "fork.html",
         "geometron.html",
         "geometron.js",
