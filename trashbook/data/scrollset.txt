@@ -2,9 +2,11 @@
     "server": "https://raw.githubusercontent.com/LafeLabs/squares/main/trashbook/",
     "scrolls": [
         "above-below",
+        "ag",
         "cardboard",
         "home",
         "trashmagic",
-        "virtual"
+        "virtual",
+        "web-geometron"
     ]
 }
