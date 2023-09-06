@@ -12,6 +12,7 @@
         "readmeeditor.html",
         "tarot.html",
         "tarot.js",
+        "text.html",
         "trashmagic.css",
         "trashmagic.js",
         "trashrobot-board1.txt",
