@@ -4,9 +4,20 @@
         "above-below",
         "ag",
         "cardboard",
+        "domains",
+        "freepants",
         "home",
+        "hypercube",
+        "markers",
+        "mastodon",
+        "ontology",
+        "phonestand",
+        "slime",
+        "street",
         "trashmagic",
+        "videos",
         "virtual",
+        "watershed",
         "web-geometron"
     ]
 }
