@@ -1,0 +1,10 @@
+{
+    "server": "https://raw.githubusercontent.com/LafeLabs/squares/main/trashbook/",
+    "scrolls": [
+        "above-below",
+        "cardboard",
+        "home",
+        "trashmagic",
+        "virtual"
+    ]
+}

@@ -13,8 +13,13 @@ $dna = json_decode($dnaraw);
 mkdir("data");
 mkdir("php");
 mkdir("trashmagic");
+mkdir("trashbook");
+
 
 copy("https://raw.githubusercontent.com/LafeLabs/squares/main/php/replicator.txt","replicator.php");
+
+copy("https://raw.githubusercontent.com/LafeLabs/trashbook/main/php/replicator.txt","trashbook/replicator.php");
+
 
 foreach($dna->html as $value){
     
