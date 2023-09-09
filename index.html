@@ -33,6 +33,7 @@
 <div class = "topbutton" id = "clearbutton">CLEAR</div>
 <div class = "topbutton" id = "postbutton">POST</div>
 
+<div class = "bottombutton" id = "removebutton">REMOVE BACK IMAGE</div>
 <!--
 <div id = "qrcode"></div>
 -->
@@ -73,6 +74,9 @@ lineArray =[];
 
 
 
+function preload() {
+  img = loadImage('trashmagic/voice.of.the.slime.png');
+}
 
 function setup() {
 
@@ -97,10 +101,19 @@ function setup() {
     background(159,135,103);
     stroke(0);
     strokeWeight(10);
+      image(img, 0, 0,squareWidth-50,squareWidth-70);
 }
 
 inLine = false;
+
+newimage = false;
+
 function draw() {
+  
+  if(newimage){
+    image(img, 0, 0,squareWidth-50,squareWidth-70);
+    newimage = false;
+  }
   stroke(0);
   if (mouseIsPressed === true) {
     line(mouseX, mouseY, pmouseX, pmouseY);
@@ -119,8 +132,15 @@ function draw() {
   }
 }
 
-
-
+document.getElementById("removebutton").onclick = function(){
+    clear();
+    background(159,135,103);
+    for(var lineindex = 0;lineindex < lineArrayStack.length;lineindex++){
+        for(var pointindex = 1;pointindex < lineArrayStack[lineindex].length;pointindex++){
+            line(lineArrayStack[lineindex][pointindex - 1].x,lineArrayStack[lineindex][pointindex - 1].y,lineArrayStack[lineindex][pointindex].x,lineArrayStack[lineindex][pointindex].y);
+        }
+    }
+}
 
 document.getElementById("deletebutton").onclick = function(){
     lineArrayStack.pop();
@@ -250,6 +270,13 @@ var httpc9 = new XMLHttpRequest();
             newimg.classList.add("uploadimage");
             newimg.classList.add("button");
             newbox.appendChild(newimg);
+            
+            newimg.onclick = function(){
+                img = loadImage(this.src);
+                loadImage(this.src, img => {
+                    image(img, 0, 0,squareWidth-50,squareWidth-70);
+                });
+            }
 
         }
     }
@@ -334,6 +361,29 @@ main{
 }
 .topbutton:active{
     background-color:yellow;
+}
+.bottombutton{
+    position:absolute;
+    bottom:0px;
+    cursor:pointer;
+    width:6em;
+    z-index:100;
+    border:solid;
+    text-align:center;
+    font-size:1.8em;
+    border-width:5px;
+    border-radius:10px;
+    font-family:COMIC SANS MS;
+}
+.bottombutton:hover{
+    background-color:green;
+}
+.bottombutton:active{
+    background-color:yellow;
+}
+#removebutton{
+    right:50%;
+    width:12em;
 }
 #deletebutton{
     left:0px;
