@@ -10,6 +10,7 @@
         "index.html",
         "readme.html",
         "readmeeditor.html",
+        "slime.html",
         "tarot.html",
         "tarot.js",
         "text.html",
@@ -17,6 +18,7 @@
         "trashmagic.js",
         "trashrobot-board1.txt",
         "trashrobot.html",
+        "voice-of-the-slime.html",
         "webdestroyer.html",
         "webeditor.html"
     ],
