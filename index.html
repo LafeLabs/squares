@@ -33,7 +33,7 @@
 <div class = "topbutton" id = "clearbutton">CLEAR</div>
 <div class = "topbutton" id = "postbutton">POST</div>
 
-<div class = "bottombutton" id = "removebutton">REMOVE BACK IMAGE</div>
+<div class = "bottombutton" id = "removebutton" style = "display:none">REMOVE BACK IMAGE</div>
 <!--
 <div id = "qrcode"></div>
 -->
@@ -64,6 +64,17 @@
     
     
     <div id = "qrcode"></div>
+    
+    <table>
+        <tr>
+            <td>
+                remote square server url:
+            </td>
+            <td>
+                <input id = "remotefeedurl"/>
+            </td>
+        </tr>
+    </table>
     
 </div>
 
@@ -173,6 +184,14 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
 
 document.getElementById("postbutton").onclick = function(){
             
+    clear();
+    background(159,135,103);
+    for(var lineindex = 0;lineindex < lineArrayStack.length;lineindex++){
+        for(var pointindex = 1;pointindex < lineArrayStack[lineindex].length;pointindex++){
+            line(lineArrayStack[lineindex][pointindex - 1].x,lineArrayStack[lineindex][pointindex - 1].y,lineArrayStack[lineindex][pointindex].x,lineArrayStack[lineindex][pointindex].y);
+        }
+    }
+    
     png64 = document.getElementById("defaultCanvas0").toDataURL("image/png");
     var timestamp = Math.round((new Date().getTime())/1000).toString();
     var httpc = new XMLHttpRequest();
@@ -229,6 +248,7 @@ var httpc9 = new XMLHttpRequest();
     httpc9.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         upuploadImages = JSON.parse(this.responseText);
+        savefeed();
         for(var index = upuploadImages.length - 1;index >= 0;index--) {
             
             var newbox = document.createElement("DIV");
@@ -277,6 +297,22 @@ var httpc9 = new XMLHttpRequest();
 httpc9.open("GET", "dir.php?filename=trashmagic", true);
 httpc9.send();
 
+function savefeed(){
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(upuploadImages,null,"    "))+"&filename=data/squaresfeed.txt");//send text to filesaver.php
+}
+
+
+document.getElementById("remotefeedurl").value = "";
+
+document.getElementById("remotefeedurl").onchange = function(){
+    serverurl = this.value;
+    
+}
+
 </script>
 <style>
 body{
@@ -290,6 +326,10 @@ main{
     position:absolute;
     left:10px;
     top:50px;
+}
+input,table{
+    background-color:#9f8767;    
+    font-family:COMIC SANS MS;
 }
 #defaultCanvas0{
     border:solid;

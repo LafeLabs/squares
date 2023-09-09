@@ -24,7 +24,8 @@
     ],
     "data": [
         "dna.txt",
-        "scrollset.txt"
+        "scrollset.txt",
+        "squaresfeed.txt"
     ],
     "php": [
         "copy.txt",
