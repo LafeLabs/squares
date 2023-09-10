@@ -8,6 +8,8 @@
         "hypercube.html",
         "index-board1.txt",
         "index.html",
+        "qrcode-page.html",
+        "qrcode.html",
         "readme.html",
         "readmeeditor.html",
         "slime.html",
@@ -19,14 +21,13 @@
         "trashmagic.js",
         "trashrobot-board1.txt",
         "trashrobot.html",
+        "view.html",
         "voice-of-the-slime.html",
         "webdestroyer.html",
         "webeditor.html"
     ],
     "data": [
-        "dna.txt",
-        "scrollset.txt",
-        "squaresfeed.txt"
+        "dna.txt"
     ],
     "php": [
         "copy.txt",
