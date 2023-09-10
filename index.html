@@ -68,10 +68,10 @@
     <table>
         <tr>
             <td>
-                remote square server url:
+                square root url:
             </td>
             <td>
-                <input id = "remotefeedurl"/>
+                <input id = "squarerooturl"/>
             </td>
         </tr>
     </table>
@@ -195,11 +195,20 @@ document.getElementById("postbutton").onclick = function(){
     png64 = document.getElementById("defaultCanvas0").toDataURL("image/png");
     var timestamp = Math.round((new Date().getTime())/1000).toString();
     var httpc = new XMLHttpRequest();
+    
     var url = "pngsave.php";        
     httpc.open("POST", url, true);
     httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     httpc.send("data="+encodeURIComponent(png64.substring(22))+"&filename=trashmagic/square" + timestamp +  ".png");//send text to filesaver.php
      //location.reload(); 
+     
+    var url = "filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    squaresfeed.feed = upuploadImages;
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(lineArrayStack,null,"    "))+"&filename=squaresdata/square" + timestamp +".txt");//send text to filesaver.php     
+     
      
     newfilename = "trashmagic/square" + timestamp +  ".png";
     
@@ -297,21 +306,128 @@ var httpc9 = new XMLHttpRequest();
 httpc9.open("GET", "dir.php?filename=trashmagic", true);
 httpc9.send();
 
+squaresfeed  = {};
+squaresfeed.root = window.location.href;
+if(squaresfeed.root.includes("index.html")){
+    squaresfeed.root  = squaresfeed.root.split("index.html")[0];
+}
+
+squaresfeed.feed = [];
+
 function savefeed(){
     var url = "filesaver.php";        
     var httpc = new XMLHttpRequest();
     httpc.open("POST", url, true);
     httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    httpc.send("data="+encodeURIComponent(JSON.stringify(upuploadImages,null,"    "))+"&filename=data/squaresfeed.txt");//send text to filesaver.php
+    squaresfeed.feed = upuploadImages;
+    httpc.send("data="+encodeURIComponent(JSON.stringify(squaresfeed,null,"    "))+"&filename=data/squaresfeed.txt");//send text to filesaver.php
 }
 
 
-document.getElementById("remotefeedurl").value = "";
 
-document.getElementById("remotefeedurl").onchange = function(){
+
+
+document.getElementById("squarerooturl").value = squaresfeed.root;
+
+serverurl = "";
+feedurl = "";
+
+document.getElementById("squarerooturl").onchange = function(){
+
     serverurl = this.value;
+    if(serverurl.includes("index.html")){
+        serverurl  = serverurl.split("index.html")[0];
+    }
+    if(serverurl.charAt(serverurl.length-1) != "/"){
+        serverurl += "/";
+    }
+    feedurl = serverurl + "data/squaresfeed.txt";
+    loadfeed();
     
 }
+
+remotefeed = {};
+remoteimages = [];
+dataurl = "";
+function loadfeed(){
+    var httpc666 = new XMLHttpRequest();
+    httpc666.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            remotefeed = JSON.parse(this.responseText);
+            remoteimages = [];
+            for(var index = 0;index < remotefeed.feed.length;index++){
+                if(!remotefeed.feed[index].includes("geometron") && !remotefeed.feed[index].includes("text")){
+                    remoteimages.push(remotefeed.root + "trashmagic/" + remotefeed.feed[index]);                    
+                }
+
+            }
+            
+            
+            for(var index = 0;index < remoteimages.length;index++){
+                
+                var newbox = document.createElement("DIV");
+                newbox.classList.add("imagebox");         
+                
+
+           //     document.getElementById("feedscroll").appendChild(newbox);
+                document.getElementById("feedscroll").insertBefore(newbox,document.getElementById("feedscroll").getElementsByClassName("imagebox")[0]);
+        
+                var newdiv = document.createElement("DIV");
+                newdiv.innerHTML = remoteimages[index];
+                newdiv.className = "filelabel";
+                newbox.appendChild(newdiv);
+            
+                
+                var newimg = document.createElement("IMG");
+                newimg.src = remoteimages[index];
+                newimg.classList.add("uploadimage");
+                newimg.classList.add("button");
+                newbox.appendChild(newimg);
+                
+                newimg.onclick = function(){
+                    dataurl = this.src;
+                    dataurl = dataurl.replace(/.png/g,".txt"); 
+                    dataurl = dataurl.replace(/trashmagic/g,"squaresdata"); 
+
+//                    alert(dataurl);
+                    loadremotedata();
+                    
+//                    img = loadImage(this.src);
+  //                  loadImage(this.src, img => {
+    //                    image(img, 0, 0,squareWidth-50,squareWidth-70);
+      //              });
+                }
+
+            
+            }
+            
+        }
+    };
+    httpc666.open("GET", "fileloader.php?filename=" + feedurl, true);
+    httpc666.send();
+}
+
+
+function loadremotedata(){
+    var httpcjson = new XMLHttpRequest();    
+    httpcjson.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            lineArrayStack = JSON.parse(this.responseText);
+            clear();
+            background(159,135,103);
+            for(var lineindex = 0;lineindex < lineArrayStack.length;lineindex++){
+                for(var pointindex = 1;pointindex < lineArrayStack[lineindex].length;pointindex++){
+                    line(lineArrayStack[lineindex][pointindex - 1].x,lineArrayStack[lineindex][pointindex - 1].y,lineArrayStack[lineindex][pointindex].x,lineArrayStack[lineindex][pointindex].y);
+                }
+            }    
+                
+                
+            }
+        };
+    httpcjson.open("GET", "fileloader.php?filename=" + dataurl, true);
+    httpcjson.send();
+}
+
 
 </script>
 <style>
