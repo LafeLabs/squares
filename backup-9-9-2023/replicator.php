@@ -14,6 +14,7 @@ mkdir("data");
 mkdir("php");
 mkdir("trashmagic");
 mkdir("trashbook");
+mkdir("squaresdata");
 
 copy("https://raw.githubusercontent.com/LafeLabs/squares/main/php/replicator.txt","replicator.php");
 
