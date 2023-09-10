@@ -15,7 +15,7 @@
         LANGUAGE IS HOW THE MIND PARSES REALITY
 
     -->
-        <title>GEOMETRON</title>
+        <title>TEXT SQUARES</title>
 
 <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAZ4efAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREAAAAAAAAREQEREREREBERAREREREQEREBEAAAARAREQEQEREBEBERARAQAQEQEREBEBABARAREQEQEREBEBERARAAAAEQEREBERERERAREQEREREREBERAAAAAAAAEREREREREREREREREREREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
 
@@ -36,6 +36,7 @@
     
     <div id = "qrcode"></div>
 
+<textarea id = "textio"></textarea>
 </div>
 
 <script>
@@ -70,7 +71,7 @@ function draw(){
   text(poo, charsize, charsize, squaresize-50, squaresize-50); // Text wraps within text box
 }
 
-
+/*
 function keyPressed() {
 
     if(keyCode >= 040 && keyCode < 0200){
@@ -93,6 +94,7 @@ function keyPressed() {
 
 }
 
+*/
 
 
 document.getElementById("postbutton").onclick = function(){
@@ -197,6 +199,13 @@ var httpc9 = new XMLHttpRequest();
 httpc9.open("GET", "dir.php?filename=trashmagic", true);
 httpc9.send();
 
+
+document.getElementById("textio").value = "";
+document.getElementById("textio").onkeydown = function(){
+    poo = this.value;
+}
+
+document.getElementById("textio").select();
 </script>
 <style>
 body{
@@ -209,6 +218,19 @@ main{
     top:25px;
     border-left:solid;
     border-width:10px
+}
+#textio{
+    background-color:#9f8767;    
+    overflow:scroll;
+    width:80%;
+    height:8em;
+    display:block;
+    margin:auto;
+    border:solid;
+    border-radius:0.5em;
+    border-width:0.5em;
+    font-family:Comic Sans MS;
+    font-size:2em;
 }
 #postbutton{
     position:absolute;
