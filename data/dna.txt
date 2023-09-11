@@ -6,6 +6,8 @@
         "geometron.html",
         "geometron.js",
         "hypercube.html",
+        "icon-artist.html",
+        "icon-operator.html",
         "index-board1.txt",
         "index.html",
         "qrcode-page.html",
@@ -27,7 +29,11 @@
         "webeditor.html"
     ],
     "data": [
-        "dna.txt"
+        "alignimage.txt",
+        "dna.txt",
+        "icon.txt",
+        "iconfeed.txt",
+        "imagefeed.txt"
     ],
     "php": [
         "copy.txt",
@@ -43,5 +49,20 @@
         "replicator.txt",
         "text2php.txt",
         "uploadimage.txt"
+    ],
+    "iconsymbols": [
+        "abcfont.svg",
+        "cursor.svg",
+        "delete.svg",
+        "expand.svg",
+        "expandsmall.svg",
+        "left.svg",
+        "leftsmall.svg",
+        "right.svg",
+        "rightsmall.svg",
+        "rotate.svg",
+        "scale.svg",
+        "shrink.svg",
+        "shrinksmall.svg"
     ]
 }
