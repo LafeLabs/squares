@@ -52,8 +52,10 @@ if( innerWidth > innerHeight ){
     document.getElementById("scroll").style.top = "0px";    
 }
 else{
-    document.getElementById("scroll").style.left = "0px";;
-    document.getElementById("scroll").style.top = squaresize.toString() + "px";
+    squaresize = innerWidth;
+    document.getElementById("scroll").style.left = "0px";
+    document.getElementById("scroll").style.top = (squaresize + 50).toString() + "px";
+//    document.getElementById("scroll").style.top = squaresize.toString() + "px";
 }
 
 document.getElementById("squareimage").style.width = squaresize.toString() + "px";
