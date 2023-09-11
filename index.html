@@ -33,7 +33,7 @@
 <div class = "topbutton" id = "clearbutton">CLEAR</div>
 <div class = "topbutton" id = "postbutton">POST</div>
 
-<div class = "bottombutton" id = "removebutton" style = "display:none">REMOVE BACK IMAGE</div>
+<div class = "bottombutton" id = "removebutton" style = "">REMOVE BACK IMAGE</div>
 <!--
 <div id = "qrcode"></div>
 -->
@@ -61,6 +61,8 @@
     <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "slime.html">Slime Square</a></h1>  
     
     <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "trashbook/">Book of Squares(Trashbook)</a></h1>  
+    
+    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "icon-artist.html">Icon Magic</a></h1>  
     
     <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "trace.html">Image Trace</a></h1>  
     
@@ -174,7 +176,7 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
 
 
 document.getElementById("postbutton").onclick = function(){
-            
+/*            
     clear();
     background(159,135,103);
     for(var lineindex = 0;lineindex < lineArrayStack.length;lineindex++){
@@ -182,6 +184,9 @@ document.getElementById("postbutton").onclick = function(){
             line(lineArrayStack[lineindex][pointindex - 1].x,lineArrayStack[lineindex][pointindex - 1].y,lineArrayStack[lineindex][pointindex].x,lineArrayStack[lineindex][pointindex].y);
         }
     }
+    
+    */
+    
     
     png64 = document.getElementById("defaultCanvas0").toDataURL("image/png");
     var timestamp = Math.round((new Date().getTime())/1000).toString();

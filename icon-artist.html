@@ -35,6 +35,8 @@
     <span id = "sharebutton" class = "button">SHARE</span>
 </div>
 
+<div id = "postbutton" class = "button">POST SQUARE</div>
+
 <div id = "mainbox">
     <div id ="mainboxbackground"></div>
     <canvas id = "gridcanvas"></canvas>
@@ -54,6 +56,7 @@
             <td>
                 <input id = "imageurlinput"/>
             </td>
+            
         </tr>
         <tr>
             <td>
@@ -115,7 +118,7 @@
             </table>    
         </div>    
         <div id = "spellbox">
-            <div id = "savebutton" class=  "button">SAVE ICON</div>
+            <div id = "savebutton" class=  "button">SAVE ICON TO ICON FEED</div>
             <table>
             
                 <tr>  
@@ -265,6 +268,7 @@ var httpcimage = new XMLHttpRequest();
 httpcimage.onreadystatechange = function(){
     if (this.readyState == 4 && this.status == 200) {
         image = JSON.parse(this.responseText);
+        document.getElementById("imageurlinput").value = image.src;
         loadimage();
     };
 };
@@ -300,6 +304,7 @@ function loadimagefeed(){
         document.getElementById("imagefeed").appendChild(newbox);
         newimg.onclick = function() {
             var localsrc = this.src;
+            document.getElementById("imageurlinput").value = localsrc;
             document.getElementById("mainimage").src = localsrc;
             image.x = 0;
             image.y = 0;
@@ -446,11 +451,17 @@ document.getElementById("imageurlinput").value = "";
 
 //document.getElementById("imageurlinput").select();
 document.getElementById("imageurlinput").onchange  = function(){
-    document.getElementById("imagefeed").innerHTML = "";
-    imagefeed.push(this.value);
-    saveimagefeed();
-    loadimagefeed();
-    loadlocalimagefeed();
+
+    if(this.value == ""){
+        document.getElementById("mainimage").src = "";
+    }
+    else{
+        document.getElementById("imagefeed").innerHTML = "";
+        imagefeed.push(this.value);
+        saveimagefeed();
+        loadimagefeed();
+        loadlocalimagefeed();
+    }
 }
 
 uploadImages = [];
@@ -479,6 +490,8 @@ function loadlocalimagefeed(){
             document.getElementById("imagefeed").appendChild(newuploadbox);
             newimg.onclick = function() {
                 var localsrc = this.src;
+                document.getElementById("imageurlinput").value = localsrc;
+
                 document.getElementById("mainimage").src = localsrc;
                 image.x = 0;
                 image.y = 0;
@@ -929,6 +942,28 @@ selectorbuttons[2].style.borderColor = "black";
 if(innerWidth> innerHeight){
     document.getElementById("actioninput").select();
 }
+
+document.getElementById("postbutton").onclick = function(){
+     
+    mainGVM.clean();
+    mainGVM.drawGlyph(mainGVM.cleanGlyph);
+    
+    png64 = mainGVM.pngcode();
+        //png64 = document.getElementById("defaultCanvas0").toDataURL("image/png");
+     
+     
+    var timestamp = Math.round((new Date().getTime())/1000).toString();
+    var httpc = new XMLHttpRequest();
+    
+    var url = "pngsave.php";        
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(png64.substring(22))+"&filename=trashmagic/square" + timestamp +  ".png");//send text to filesaver.php
+     //location.reload(); 
+     
+   
+}
+
 </script>
 <style>
 body{
@@ -1228,10 +1263,12 @@ background-color:#9f8767;
     margin:auto;
     margin-bottom:2em;
     margin-top:2em;
+
 }
 
 .button{
     cursor:pointer;
+    border:solid;
 }
 .button:hover{
     background-color:#008000;
@@ -1263,7 +1300,18 @@ background-color:#9f8767;
 .imagebox{
     border-bottom:solid;
 }
-
+#postbutton{
+    position:absolute;
+    top:10px;
+    right:10px;
+    z-index:2;
+    text-align:center;
+    font-family:Comic Sans MS;
+    border-radius:5px;
+    text-align:center;
+    font-size:1.5em;
+    width:10em;
+}
 </style>
 </body>
 </html>
