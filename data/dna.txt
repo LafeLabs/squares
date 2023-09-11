@@ -15,6 +15,8 @@
         "readme.html",
         "readmeeditor.html",
         "slime.html",
+        "squares-react.html",
+        "squares_react.txt",
         "tarot.html",
         "tarot.js",
         "text.html",
@@ -33,7 +35,8 @@
         "dna.txt",
         "icon.txt",
         "iconfeed.txt",
-        "imagefeed.txt"
+        "imagefeed.txt",
+        "squaresfeed.txt"
     ],
     "php": [
         "copy.txt",

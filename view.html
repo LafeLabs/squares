@@ -23,14 +23,16 @@
 
     <!--Stop Google:-->
     <META NAME="robots" CONTENT="noindex,nofollow">
-<script src="trashmagic.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 
 </head>
 <body>
 
 <div id = "feedscroll">
+    
+    <h1><a href = "index.html">HOME</a></h1>
+    <div id = "qrcode"></div>
 
 
 </div>
@@ -69,6 +71,20 @@ var httpc9 = new XMLHttpRequest();
 httpc9.open("GET", "dir.php?filename=trashmagic", true);
 httpc9.send();
 
+
+codesquaresize = 170;
+marginsize = 40;
+fontsize = 12;
+//globalurl = "http://www.trashrobot.org/qrcode.html";
+globalurl = window.location.href;
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: globalurl,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
 
 
 
@@ -111,7 +127,12 @@ body{
 .filelabel{
     display:none;
 }
-
+h1,a{
+    color:blue;
+    font-family:Comic Sans MS;
+    font-size:3em;
+    text-align:center;
+}
 </style>
 </body>
 </html>
