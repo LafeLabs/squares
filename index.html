@@ -39,36 +39,21 @@
 -->
 
 <div id = "feedscroll">
-    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "https://trashrobot.org">TRASH ROBOT WEB PAGE</a></h1>
-                    
-    <h1>
-        <a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "tarot.html">TRASH MAGIC TAROT</a>
-    </h1>
-                
-    <h1>
-        <a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "https://trashmagic.community/auth/sign_up">SIGN UP FOR TRASH MAGIC MASTODON</a>
-    </h1>
-            
-    <h1>
-        <a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "geometron.html">Geometron</a>
-    </h1>    
+    <h1>TRASH MAGIC SQUARES</h1>
     
-    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "cubeworld.html">Cube World</a></h1>            
-    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "hypercube.html">Geometron Hypercube</a></h1>
-    
-    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "text.html">Text Squares</a></h1>  
-    
-    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "slime.html">Slime Square</a></h1>  
-    
-    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "trashbook/">Book of Squares(Trashbook)</a></h1>  
-    
-    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "icon-artist.html">Icon Magic</a></h1>  
-
-    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "view.html">View Squares</a></h1>  
-
-    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "trace.html">Image Trace</a></h1>  
-
-    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "squares-react.html">Squares React</a></h1>  
+    <a href = "https://trashrobot.org">TRASH ROBOT WEB PAGE</a>
+    <a href = "tarot.html">TRASH MAGIC TAROT</a>
+    <a href = "https://trashmagic.community/auth/sign_up">SIGN UP FOR TRASH MAGIC MASTODON</a>
+    <a href = "geometron.html">Geometron</a>
+    <a href = "cubeworld.html">Cube World</a>
+    <a href = "hypercube.html">Geometron Hypercube</a>
+    <a href = "text.html">Text Squares</a>
+    <a href = "slime.html">Slime Square</a>  
+    <a href = "trashbook/">Book of Squares(Trashbook)</a>  
+    <a href = "icon-artist.html">Icon Magic</a>
+    <a href = "view.html">View Squares</a>  
+    <a href = "trace.html">Image Trace</a>  
+    <a href = "squares-react.html">Squares React</a>
 
     
     <div id = "qrcode"></div>
@@ -78,10 +63,16 @@
 
 <script>
 
+rainbow(document.getElementsByTagName("A"));
+
 lineArrayStack = [];
 lineArray =[];
 
 
+titles = document.getElementsByTagName("H1");
+for(var index = 0;index < titles.length;index++){
+    rainbowstring(titles[index]);    
+}
 
 
 function setup() {
@@ -317,6 +308,11 @@ input,table{
     background-color:#9f8767;    
     font-family:COMIC SANS MS;
 }
+h1{
+    text-align:center;
+    font-family:Comic Sans MS;
+    font-size:2em;
+}
 #defaultCanvas0{
     border:solid;
     border-radius:25px;
@@ -333,6 +329,16 @@ input,table{
     border-width:5px;
     width:100px;
     height:100px;
+}
+#feedscroll a{
+    display:block;
+    font-family:Comic Sans MS;
+    font-size:2em;
+    margin:10px 10px 10px 10px;
+    border-radius:20px;
+    color:black;
+    padding-left:1em;
+    border:solid;
 }
 .imagebox{
     margin-bottom:2em;
