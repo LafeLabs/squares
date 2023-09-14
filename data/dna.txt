@@ -1,8 +1,10 @@
 {
     "html": [
         "README.md",
+        "coth.html",
         "cubeworld.html",
         "fork.html",
+        "gaussian.html",
         "geometron.html",
         "geometron.js",
         "hypercube.html",
