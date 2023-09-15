@@ -27,6 +27,7 @@
         "trashmagic.js",
         "trashrobot-board1.txt",
         "trashrobot.html",
+        "trimsquares.html",
         "view.html",
         "voice-of-the-slime.html",
         "webdestroyer.html",
