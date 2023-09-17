@@ -3,6 +3,7 @@
         "README.md",
         "coth.html",
         "cubeworld.html",
+        "fft2svg.html",
         "fork.html",
         "gaussian.html",
         "geometron.html",
