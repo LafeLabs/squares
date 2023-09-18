@@ -29,7 +29,7 @@
     
 </head>
 <body>
-<div id = "postbutton">POST</div>
+<div id = "postbutton">POST SQUARE STACK</div>
 
 
 <div id = "feedscroll">
@@ -102,10 +102,12 @@ function setup() {
 }
 
 slime = [];
-first = 21;//in order of curves
+
+first = 5;//in order of curves
 last = 40;
+
 start = 10;//frequencies in each curve
-stop = 300;
+stop = 500;
 
 
 function draw(){
@@ -117,9 +119,43 @@ function draw(){
 }
 
 
+svgopen = "<svg width=\"" + squaresize.toString() + "\" height=\"" + squaresize.toString() + "\" viewbox = \"0 0 " + squaresize.toString() + " " + squaresize.toString() + "\"  xmlns=\"http://www.w3.org/2000/svg\">\n <path d = \"M0 ";
+
+svgclose = " Z\" stroke = \"#000000\" stroke-width = \"3\" fill = \"#9f876780\" />\n</svg>";
+
+svgstring = "";
+
+
 document.getElementById("postbutton").onclick = function(){
-    reload();
+    //reload();
     //save the svg's
+    
+    timestamp = Math.round((new Date().getTime())/1000).toString();
+    
+    for(var index = first;index < last;index++){
+    
+        svgstring = svgopen;
+        svgstring += height.toString() + " ";
+    
+        for(var findex = start;findex < stop;findex++){
+            svgstring += "L" + findex.toString() + " " + (map(slime[index][findex], 0, 255, height,0)).toString() + " ";
+        }
+    
+        svgstring += "L" + width.toString() + " " + height.toString() + " ";
+        svgstring += svgclose;
+
+        svgfilename = "square" + timestamp + "-cardstack-" + (index-first).toString() + ".svg";
+        
+        var httpc = new XMLHttpRequest();
+        var url = "filesaver.php";        
+        httpc.open("POST", url, true);
+        httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        httpc.send("data="+encodeURIComponent(svgstring)+"&filename=trashmagic/" + svgfilename);
+        //save svgstring as a file with square[timestamp]-svgstack-index.svg
+        
+        
+        
+    }
     
 }
 
@@ -158,7 +194,7 @@ httpc.onreadystatechange = function() {
         slime = JSON.parse(this.responseText);
 //        last = slime.length;
   //      stop = slime[0].length;
-        document.getElementById("numberinput").value = last.toString();
+        document.getElementById("numberinput").value = slime.length.toString();
         document.getElementById("firstinput").value = first.toString();
         document.getElementById("lastinput").value = last.toString();
         document.getElementById("startinput").value = start.toString();
@@ -175,7 +211,7 @@ yoffset = 80;
 function drawspectra(){
     background(159,135,103);
 
-    fill(80,80,80);
+    fill(80,80,80,60);
     stroke(0);
     strokeWeight(1); 
 
@@ -194,10 +230,59 @@ function drawspectra(){
         
     }
 
-//    vertex(width,height);
-
-
 }
+
+
+
+upuploadImages = [];
+var httpc9 = new XMLHttpRequest();
+    httpc9.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        upuploadImages = JSON.parse(this.responseText);
+        for(var index = upuploadImages.length - 1;index >= 0;index--) {
+            
+            if(upuploadImages[index].includes("cardstack")){
+            
+                var newbox = document.createElement("DIV");
+                newbox.classList.add("imagebox");         
+                
+                var deletespan = document.createElement("SPAN");
+                deletespan.innerHTML = "X";
+                deletespan.classList.add("deletespan");
+                deletespan.onclick = function(){
+                    //delete the parent div of the image
+                    //delete the file
+                    var filename = this.parentElement.getElementsByClassName("filelabel")[0].innerHTML; 
+                    var httpc = new XMLHttpRequest();
+                    var url = "deletefile.php";         
+                    httpc.open("POST", url, true);
+                    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+                    httpc.send("filename=trashmagic/" + filename);//send text to deletefile.php
+                    this.parentElement.parentElement.removeChild(this.parentElement);
+                }
+                
+                newbox.appendChild(deletespan);
+        
+                var newdiv = document.createElement("DIV");
+                newdiv.innerHTML = upuploadImages[index];
+                newdiv.className = "filelabel";
+                newbox.appendChild(newdiv);
+            
+                
+                document.getElementById("feedscroll").appendChild(newbox);
+                var newimg = document.createElement("IMG");
+                newimg.src = "trashmagic/" + upuploadImages[index];
+                newimg.classList.add("uploadimage");
+                newimg.classList.add("button");
+                newbox.appendChild(newimg);
+                
+            }
+            
+        }
+    }
+};
+httpc9.open("GET", "dir.php?filename=trashmagic", true);
+httpc9.send();
 
 </script>
 <style>
@@ -226,7 +311,10 @@ main{
     cursor:pointer;
 }
 #postbutton:hover{
-    
+    background-color:green;
+}
+#postbutton:active{
+    background-color:yellow;
 }
 
 #feedscroll img{
@@ -253,6 +341,13 @@ a{
     font-family:Comic Sans MS;
     font-size:1.5em;    
     overflow:scroll;
+}
+td{
+    font-size:1.5em;
+}
+td,input{
+    font-family:Comic Sans MS;
+    background-color:#9f8767;    
 }
 #feedscroll{
     position:absolute;
