@@ -18,6 +18,8 @@
         "readme.html",
         "readmeeditor.html",
         "slime.html",
+        "slime.txt",
+        "slime2svg.html",
         "squares-react.html",
         "squares_react.txt",
         "tarot.html",

@@ -185,6 +185,7 @@ R = 1000;
 gnarl = 1.0;
 integral = 0;   
 frameIndex = 0;
+slimeIndex = 0;
 fcurve = [];
 fplot = 0;
 
@@ -214,7 +215,15 @@ function setup() {
 }
 
 charsize = 50;
-poo = "";
+
+slime = [];
+
+slimesize = Math.floor(squaresize/3);
+
+for(var index = 0;index < slimesize;index++){
+    var blankarray = [];
+    slime.push(blankarray);
+}
 
 
 function draw(){
@@ -226,6 +235,9 @@ function draw(){
     //background(159,135,103);
 //  line(0,height - 3*i1000,width,height - 3*i1000);
 
+  slime[slimeIndex] = spectrum;
+  
+  
   strokeWeight(8);
   for (let i = 0; i < spectrum.length; i++) {
     //stroke(spectrum[i]);
@@ -282,10 +294,10 @@ function draw(){
 
 //  i1000 = 
   frameIndex += 3;
+  slimeIndex = frameIndex/3;
   if(frameIndex > width){
       frameIndex = 0;
   }
-
 }
 
 
@@ -295,6 +307,8 @@ function draw(){
 
 document.getElementById("postbutton").onclick = function(){
             
+    saveslime();
+
     png64 = document.getElementById("defaultCanvas0").toDataURL("image/png");
     var timestamp = Math.round((new Date().getTime())/1000).toString();
     var httpc = new XMLHttpRequest();
@@ -340,9 +354,20 @@ document.getElementById("postbutton").onclick = function(){
 
     document.getElementById("feedscroll").insertBefore(newbox,document.getElementById("feedscroll").getElementsByClassName("imagebox")[0]);
     
+
     
 }
 
+
+function saveslime(){
+        //save slime object as data/slime.txt
+    var url = "filesaver.php";        
+    var httpc666 = new XMLHttpRequest();
+    httpc666.open("POST", url, true);
+    httpc666.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc666.send("data="+encodeURIComponent(JSON.stringify(slime,null,"    "))+"&filename=slime.txt");//send text to filesaver.php
+
+}
 
 
 upuploadImages = [];

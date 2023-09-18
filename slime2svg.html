@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+        <title>SLIME2SVG</title>
+
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAZ4efAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREAAAAAAAAREQEREREREBERAREREREQEREBEAAAARAREQEQEREBEBERARAQAQEQEREBEBABARAREQEQEREBEBERARAAAAEQEREBERERERAREQEREREREBERAAAAAAAAEREREREREREREREREREREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
+
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.js"></script>
+    
+    
+</head>
+<body>
+<div id = "postbutton">POST</div>
+
+
+<div id = "feedscroll">
+    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "index.html">HOME</a></h1>
+    
+    <h1>
+      SLIME2SVG  
+    </h1>
+
+<table>
+    <tr>
+        <td>number of curves:</td>
+        <td>
+            <input id = "numberinput"/>
+        </td>
+    </tr>
+
+    <tr>
+        <td>first curve index:</td>
+        <td>
+            <input id = "firstinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>last curve index:</td>
+        <td>
+            <input id = "lastinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>start freq index:</td>
+        <td>
+            <input id = "startinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>stop freq index:</td>
+        <td>
+            <input id = "stopinput"/>
+        </td>
+    </tr>
+    
+</table>
+
+</div>
+
+<script>
+
+drawtime = false;
+
+
+squaresize = 500;
+
+if(innerWidth > innerHeight){
+    squaresize = innerHeight - 50;
+    document.getElementById("feedscroll").style.right =  squaresize.toString()+ "px";    
+}
+else{
+    squaresize = innerWidth - 50;
+    
+    document.getElementById("feedscroll").style.right =  "0px";    
+    document.getElementById("feedscroll").style.top = squaresize.toString() + "px";
+}
+
+
+function setup() {
+  createCanvas(squaresize, squaresize);    
+  background(159,135,103);
+  
+}
+
+slime = [];
+first = 21;//in order of curves
+last = 40;
+start = 10;//frequencies in each curve
+stop = 300;
+
+
+function draw(){
+
+    if(drawtime){
+        drawspectra();
+        drawtime = false;
+    }
+}
+
+
+document.getElementById("postbutton").onclick = function(){
+    reload();
+    //save the svg's
+    
+}
+
+document.getElementById("startinput").onchange = function(){
+    reload();
+}
+document.getElementById("stopinput").onchange = function(){
+    reload();
+}
+document.getElementById("firstinput").onchange = function(){
+    reload();
+}
+document.getElementById("lastinput").onchange = function(){
+    reload();
+}
+
+function reload(){
+    
+    start = parseInt(document.getElementById("startinput").value);
+    stop = parseInt(document.getElementById("stopinput").value);
+    first = parseInt(document.getElementById("firstinput").value);
+    last = parseInt(document.getElementById("lastinput").value);
+    drawtime = true;
+
+}
+
+
+document.getElementById("firstinput").value = "0";
+
+document.getElementById("startinput").value = "0";
+document.getElementById("stopinput").value = "0";
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        slime = JSON.parse(this.responseText);
+//        last = slime.length;
+  //      stop = slime[0].length;
+        document.getElementById("numberinput").value = last.toString();
+        document.getElementById("firstinput").value = first.toString();
+        document.getElementById("lastinput").value = last.toString();
+        document.getElementById("startinput").value = start.toString();
+        document.getElementById("stopinput").value = stop.toString();
+        drawtime = true;
+    }
+};
+httpc.open("GET", "fileloader.php?filename=slime.txt", true);
+httpc.send();
+
+
+yoffset = 80;
+
+function drawspectra(){
+    background(159,135,103);
+
+    fill(80,80,80);
+    stroke(0);
+    strokeWeight(1); 
+
+          
+    for(var index = first;index < last;index++){
+        beginShape();
+        vertex(40,height-40);
+
+        for(var findex = start;findex < stop;findex++){
+            vertex(findex+40, map(slime[index][findex], 0, 255, height-80,0));
+        }
+        vertex(stop+40,height-40);
+        
+        vertex(40,height -40);
+        endShape();
+        
+    }
+
+//    vertex(width,height);
+
+
+}
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    background-color:#9f8767;    
+}
+main{
+    position:absolute;
+    right:25px;
+    top:25px;
+    border-left:solid;
+    border-width:10px
+}
+#postbutton{
+    position:absolute;
+    top:2em;
+    left:5px;
+    font-family:Comic Sans MS;
+    font-size:1.5em;
+    border:solid;
+    border-radius:10px;
+    text-align:center;
+    border-width:5px;
+    width:8em;
+    cursor:pointer;
+}
+#postbutton:hover{
+    
+}
+
+#feedscroll img{
+    max-width:80%;
+    display:block;
+    margin:auto;
+    margin-top:1em;
+    border:solid;
+}
+
+p{
+    margin:1em 1em 1em 1em;
+    font-size:1.5em;
+    font-family:Comic Sans MS;
+}
+h1,h2,h3{
+    font-family:Comic Sans MS;
+    text-align:center;
+        overflow:scroll;
+
+}
+a{
+    color:blue;
+    font-family:Comic Sans MS;
+    font-size:1.5em;    
+    overflow:scroll;
+}
+#feedscroll{
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    top:6em;
+    z-index:-2;
+    overflow:scroll;
+    background-color:#9f8767;    
+    padding:1em 1em 1em 1em;
+}
+.deletespan{
+    color:red;
+    border:solid;
+    border-color:red;
+    border-radius:0.5em;
+    padding: 1em 1em 1em 1em;
+    cursor:pointer;
+}
+.deletespan:hover{
+    background-color:#ff000080;
+}
+.filelabel{
+    display:none;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+</style>
+</body>
+</html>
