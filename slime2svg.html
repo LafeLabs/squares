@@ -71,6 +71,14 @@
             <input id = "stopinput"/>
         </td>
     </tr>
+    <tr>
+        <td>
+            index multiplier
+        </td>
+        <td>
+            <input id = "multiplierinput"/>
+        </td>
+    </tr>
     
 </table>
 
@@ -103,12 +111,13 @@ function setup() {
 
 slime = [];
 
-first = 5;//in order of curves
-last = 40;
+first = 13;//in order of curves
+last = 48;
 
-start = 1;//frequencies in each curve
-stop = 700;
+start = 0;//frequencies in each curve
+stop = 100;
 
+multiplier = 8;
 
 function draw(){
 
@@ -121,43 +130,21 @@ function draw(){
 
 svgopen = "<svg width=\"" + squaresize.toString() + "\" height=\"" + squaresize.toString() + "\" viewbox = \"0 0 " + squaresize.toString() + " " + squaresize.toString() + "\"  xmlns=\"http://www.w3.org/2000/svg\">\n <path d = \"M0 ";
 
-svgclose = " Z\" stroke = \"#000000\" stroke-width = \"1\" fill = \"#9f876780\" />\n</svg>";
+
+pathclose = " Z\" stroke = \"#000000\" stroke-width = \"1\" fill = \"#9f876780\" />\n";
+
+svgclose = "\n</svg>";
 
 svgstring = "";
 
 
-document.getElementById("postbutton").onclick = function(){
-    //reload();
-    //save the svg's
-    
-    timestamp = Math.round((new Date().getTime())/1000).toString();
-    
-    for(var index = first;index < last;index++){
-    
-        svgstring = svgopen;
-        svgstring += height.toString() + " ";
-    
-        for(var findex = start;findex < stop;findex++){
-            svgstring += "L" + findex.toString() + " " + (map(slime[index][findex], 0, 255, height - 80,0)).toString() + " ";
-        }
-    
-        svgstring += "L" + stop.toString() + " " + (height).toString() + " ";
-        svgstring += svgclose;
+textopen = "<text x=\"10\" y = \"" + (squaresize-10).toString() + "\" fill = \"#ff2cb4\" font-size = \"21.3px\" font-family = \"Arial\">";
 
-        svgfilename = "square" + timestamp + "-cardstack-" + (index-first).toString() + ".svg";
-        
-        var httpc = new XMLHttpRequest();
-        var url = "filesaver.php";        
-        httpc.open("POST", url, true);
-        httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        httpc.send("data="+encodeURIComponent(svgstring)+"&filename=trashmagic/" + svgfilename);
-        //save svgstring as a file with square[timestamp]-svgstack-index.svg
-        
-        
-        
-    }
-    
-}
+
+textclose = "</text>";
+
+
+
 
 document.getElementById("startinput").onchange = function(){
     reload();
@@ -172,8 +159,13 @@ document.getElementById("lastinput").onchange = function(){
     reload();
 }
 
+document.getElementById("multiplierinput").onchange = function(){
+    reload();
+}
+
 function reload(){
     
+    multiplier = parseInt(document.getElementById("multiplierinput").value);
     start = parseInt(document.getElementById("startinput").value);
     stop = parseInt(document.getElementById("stopinput").value);
     first = parseInt(document.getElementById("firstinput").value);
@@ -199,6 +191,7 @@ httpc.onreadystatechange = function() {
         document.getElementById("lastinput").value = last.toString();
         document.getElementById("startinput").value = start.toString();
         document.getElementById("stopinput").value = stop.toString();
+        document.getElementById("multiplierinput").value = multiplier.toString();
         drawtime = true;
     }
 };
@@ -221,9 +214,9 @@ function drawspectra(){
         vertex(40,height-40);
 
         for(var findex = start;findex < stop;findex++){
-            vertex(findex+40, map(slime[index][findex], 0, 255, height-80,0));
+            vertex(multiplier*findex+40, map(slime[index][findex], 0, 255, height-80,0));
         }
-        vertex(stop+40,height-40);
+        vertex(multiplier*stop+40,height-40);
         
         vertex(40,height -40);
         endShape();
@@ -284,6 +277,47 @@ var httpc9 = new XMLHttpRequest();
 httpc9.open("GET", "dir.php?filename=trashmagic", true);
 httpc9.send();
 
+
+document.getElementById("postbutton").onclick = function(){
+    //reload();
+    //save the svg's
+    
+    
+    timestamp = Math.round((new Date().getTime())/1000).toString();
+    
+    for(var index = first;index < last;index++){
+    
+        svgstring = svgopen;
+        svgstring += height.toString() + " ";
+    
+        for(var findex = start;findex < stop;findex++){
+            svgstring += "L" + (findex*multiplier).toString() + " " + (map(slime[index][findex], 0, 255, height - 80,0)).toString() + " ";
+        }
+    
+        svgstring += "L" + (stop*multiplier).toString() + " " + (height).toString() + " ";
+        svgstring += pathclose;
+        svgstring += textopen;
+
+        svgfilename = "square" + timestamp + "-cardstack-" + (index-first).toString() + ".svg";
+
+        svgstring += svgfilename;
+        svgstring += textclose;
+        svgstring += svgclose;
+        
+        
+        
+        var httpc = new XMLHttpRequest();
+        var url = "filesaver.php";        
+        httpc.open("POST", url, true);
+        httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        httpc.send("data="+encodeURIComponent(svgstring)+"&filename=trashmagic/" + svgfilename);
+        //save svgstring as a file with square[timestamp]-svgstack-index.svg
+        
+        
+        
+    }
+    
+}
 </script>
 <style>
 body{
