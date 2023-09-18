@@ -106,8 +106,8 @@ slime = [];
 first = 5;//in order of curves
 last = 40;
 
-start = 10;//frequencies in each curve
-stop = 500;
+start = 1;//frequencies in each curve
+stop = 700;
 
 
 function draw(){
@@ -121,7 +121,7 @@ function draw(){
 
 svgopen = "<svg width=\"" + squaresize.toString() + "\" height=\"" + squaresize.toString() + "\" viewbox = \"0 0 " + squaresize.toString() + " " + squaresize.toString() + "\"  xmlns=\"http://www.w3.org/2000/svg\">\n <path d = \"M0 ";
 
-svgclose = " Z\" stroke = \"#000000\" stroke-width = \"3\" fill = \"#9f876780\" />\n</svg>";
+svgclose = " Z\" stroke = \"#000000\" stroke-width = \"1\" fill = \"#9f876780\" />\n</svg>";
 
 svgstring = "";
 
@@ -138,10 +138,10 @@ document.getElementById("postbutton").onclick = function(){
         svgstring += height.toString() + " ";
     
         for(var findex = start;findex < stop;findex++){
-            svgstring += "L" + findex.toString() + " " + (map(slime[index][findex], 0, 255, height,0)).toString() + " ";
+            svgstring += "L" + findex.toString() + " " + (map(slime[index][findex], 0, 255, height - 80,0)).toString() + " ";
         }
     
-        svgstring += "L" + width.toString() + " " + height.toString() + " ";
+        svgstring += "L" + stop.toString() + " " + (height).toString() + " ";
         svgstring += svgclose;
 
         svgfilename = "square" + timestamp + "-cardstack-" + (index-first).toString() + ".svg";
