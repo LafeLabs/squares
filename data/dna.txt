@@ -17,6 +17,8 @@
         "qrcode.html",
         "readme.html",
         "readmeeditor.html",
+        "sigil.html",
+        "sigil.txt",
         "slime.html",
         "slime.txt",
         "slime2svg.html",
