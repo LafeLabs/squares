@@ -16,8 +16,9 @@
         LANGUAGE IS HOW THE MIND PARSES REALITY 
 
     -->
-    <title>GEOMETRON CYBER MAGIC</title>
-    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+    <title>GEOMETRON MAGIC SIGIL</title>
+
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAZ4efAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREAEREREREREAABEREREREQEQEREREREQEREBEREAERAREQARAAABAREREAAAEBABEREAAQERARAAABEQEREBEQABERAREBAQERABAQEAAAERERAAAAARARERAREAEREQEREBEREREREBEBERERERERABEREREREREAEREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
 
     <!--Stop Google:-->
     <META NAME="robots" CONTENT="noindex,nofollow">
@@ -541,10 +542,10 @@ document.getElementById("savebutton").onclick = function(){
 
 
     if(document.getElementById("feedscroll").getElementsByClassName("imagebox").length > 0){
-        document.getElementById("feedscroll").appendChild(newbox);
+        document.getElementById("feedscroll").insertBefore(newbox,document.getElementById("feedscroll").getElementsByClassName("imagebox")[0]);        
     }
     else{
-        document.getElementById("feedscroll").insertBefore(newbox,document.getElementById("feedscroll").getElementsByClassName("imagebox")[0]);        
+        document.getElementById("feedscroll").appendChild(newbox);
     }
 
 
@@ -577,10 +578,8 @@ input{
     font-size:24px;
 }
 .button{
-    position:absolute;
     cursor:pointer;
     border:solid;
-
 }
 .button:hover{
     background-color:#00ff0080;
@@ -650,13 +649,14 @@ input{
     border:solid;
 }
 #feedscroll img{
-    display:block;
     margin-top:0.5em;
     margin:auto;
     border:solid;
     max-width:80%;
     display:block;
-    margin:auto;
+}
+.imagebox{
+    display:block;
     margin-top:1em;
 }
 .filelabel{
@@ -669,6 +669,8 @@ input{
     border-radius:0.5em;
     padding: 1em 1em 1em 1em;
     cursor:pointer;
+    margin-left:1em;
+    position:absolute;
 }
 .deletespan:hover{
     background-color:#ff000080;
