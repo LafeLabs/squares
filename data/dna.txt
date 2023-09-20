@@ -13,6 +13,7 @@
         "icon-operator.html",
         "index-board1.txt",
         "index.html",
+        "oscilloscope.html",
         "qrcode-page.html",
         "qrcode.html",
         "readme.html",
