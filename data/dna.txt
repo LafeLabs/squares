@@ -14,6 +14,7 @@
         "index-board1.txt",
         "index.html",
         "oscilloscope.html",
+        "qnoise.html",
         "qrcode-page.html",
         "qrcode.html",
         "readme.html",
