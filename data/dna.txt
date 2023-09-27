@@ -1,5 +1,6 @@
 {
     "html": [
+        "QNS-spectra.html",
         "README.md",
         "coth.html",
         "cubeworld.html",
