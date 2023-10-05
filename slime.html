@@ -33,7 +33,9 @@
 
 
 <div id = "feedscroll">
+
     <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "index.html">HOME</a></h1>
+    
     
     <h1>
       SLIMEZISTOR  
@@ -306,7 +308,11 @@ function draw(){
 
 
 document.getElementById("postbutton").onclick = function(){
-            
+            post();
+    
+}
+
+function post(){
     saveslime();
 
     png64 = document.getElementById("defaultCanvas0").toDataURL("image/png");
@@ -352,12 +358,17 @@ document.getElementById("postbutton").onclick = function(){
     newbox.appendChild(newimg);    
 
 
-    document.getElementById("feedscroll").insertBefore(newbox,document.getElementById("feedscroll").getElementsByClassName("imagebox")[0]);
+    if(document.getElementById("feedscroll").getElementsByClassName("imagebox").length > 0){
+        document.getElementById("feedscroll").insertBefore(newbox,document.getElementById("feedscroll").getElementsByClassName("imagebox")[0]);
     
+    }
+    else{
+        document.getElementById("feedscroll").appendChild(newbox);
+    }
+
 
     
 }
-
 
 function saveslime(){
         //save slime object as data/slime.txt
@@ -420,6 +431,15 @@ var httpc9 = new XMLHttpRequest();
 httpc9.open("GET", "dir.php?filename=trashmagic", true);
 httpc9.send();
 
+
+
+function keyPressed() {
+
+    if(key == 's'){
+        post();
+    }
+
+}
 </script>
 <style>
 body{

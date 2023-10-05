@@ -15,7 +15,7 @@
         LANGUAGE IS HOW THE MIND PARSES REALITY
 
     -->
-        <title>QUANTUM NOISE SYNTH SPECTRA</title>
+        <title>GAUSSIAN</title>
 
 <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAZ4efAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREAAAAAAAAREQEREREREBERAREREREQEREBEAAAARAREQEQEREBEBERARAQAQEQEREBEBABARAREQEQEREBEBERARAAAAEQEREBERERERAREQEREREREBERAAAAAAAAEREREREREREREREREREREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
 
@@ -25,45 +25,41 @@
 <!--geometron javascript library-->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.js"></script>
-    
-    
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+
 </head>
 <body>
-<div id = "postbutton">POST</div>
 
 
 <div id = "feedscroll">
-
-    <h1><a style = "color:blue;text-align:center;font-family:arial;margin:auto" href = "index.html">HOME</a></h1>
     
-        <h1><a style = "color:blue;text-align:center;font-family:arial;margin:auto" href = "user.php?scroll=scrolls/p5js">p5js scroll</a></h1>
+    <h1>NOISE BAND</h1>
     
-    <h1>NOISE SPECTRA</h1>
+    <div id = "savebutton">POST</div>
+    
+    <h1><a style = "color:blue;text-align:center;font-family:Comic Sans MS;margin:auto" href = "index.html">HOME</a></h1>
+    
+<p>NOISE BAND FROM AN EXAMPLE ON P5JS.ORG</p>
 
+<p>
+    Click anywhere to start the sound, click again to stop.
+</p>
 </div>
 
 <script>
 
-let mic, fft;
 
-C= 7.11e-7;
-R = 1000;
-gnarl = 1.0;
-integral = 0;   
-frameIndex = 0;
-slimeIndex = 0;
-fcurve = [];
-fplot = 0;
-
-psum = 0;
-psumprev = 0;
-
-attenuation = 10;
-
-fmin = 0;
-fmax = 10;
-
-squaresize = 500;
 
 if(innerWidth > innerHeight){
     squaresize = innerHeight - 50;
@@ -77,153 +73,80 @@ else{
 }
 
 
+
+/**
+ *  @name Filter BandPass
+ *  @arialabel The bandpass filter changes intensity as the user’s mouse moves left and right on the screen
+ *  @description Apply a p5.BandPass filter to white noise.
+ *  Visualize the sound with FFT.
+ *  Map mouseX to the bandpass frequency
+ *  and mouseY to resonance/width of the a BandPass filter
+ *
+ * <p><em><span class="small"> To run this example locally, you will need the
+ * <a href="http://p5js.org/reference/#/libraries/p5.sound">p5.sound library</a>
+ * a sound file, and a running <a href="https://github.com/processing/p5.js/wiki/Local-server">local server</a>.</span></em></p>
+ */
+ 
+noiseon = false;
+ 
+let noise;
+let fft;
+let filter, filterFreq, filterWidth;
+
 function setup() {
-  createCanvas(squaresize, squaresize);    
-  mic = new p5.AudioIn();
-  mic.start();
+
+  createCanvas(squaresize, squaresize);
+  fill(0);
+ // fill(255, 40, 255);
+
+  filter = new p5.BandPass();
+
+  noise = new p5.Noise();
+
+  noise.disconnect(); // Disconnect soundfile from master output...
+  filter.process(noise); // ...and connect to filter so we'll only hear BandPass.
+  noise.start();
+
   fft = new p5.FFT();
-  fft.setInput(mic);
-    //background(0);
-   background(159,135,103);
-    
 }
 
-charsize = 50;
+function draw() {
+ // background(30);
+  background(159,135,103);
 
-slime = [];
+  // Map mouseX to a bandpass freq from the FFT spectrum range: 10Hz - 22050Hz
+  filterFreq = map(mouseX, 0, width, 10, 22050);
+  // Map mouseY to resonance/width
+  filterWidth = map(mouseY, 0, height, 0, 90);
+  // set filter parameters
+  filter.set(filterFreq, filterWidth);
 
-slimesize = Math.floor(squaresize/3);
-
-for(var index = 0;index < slimesize;index++){
-    var blankarray = [];
-    slime.push(blankarray);
-}
-
-
-function draw(){
-   strokeWeight(3);
-    
-  fmin = Math.round((mouseX)/5);
-  fmax = Math.round((squaresize - mouseY)/5);
+  // Draw every value in the FFT spectrum analysis where
+  // x = lowest (10Hz) to highest (22050Hz) frequencies,
+  // h = energy / amplitude at that frequency
   let spectrum = fft.analyze();
-  nyquistFreq = sampleRate() / 2;
-  binFreq = nyquistFreq / (spectrum.length);
-  i1000 = Math.round(1000/binFreq);
-  stroke(0,255,0);
-    //background(159,135,103);
-//  line(0,height - 3*i1000,width,height - 3*i1000);
-
-  slime[slimeIndex] = spectrum;
-  
-  
-  strokeWeight(5);
-  psum = 0;
+  noStroke();
   for (let i = 0; i < spectrum.length; i++) {
-    //stroke(spectrum[i]);
-    
-        n = 256;
-        H = spectrum[i]*360/n;
-        z = 255*(1 - Math.abs((H/60)%2 - 1));
-    
-        if(H < 60){
-            red = 255;
-            green = Math.round(z);
-            blue = 0;
-        }
-        if(H >= 60 && H < 120){
-            red = Math.round(z);
-            green = 255;
-            blue = 0;
-        }
-        if(H >= 120 && H < 180){
-            red = 0;
-            green = 255;
-            blue = Math.round(z);
-        }
-        if(H >= 180 && H < 240){
-            red = 0;    
-            green = Math.round(z);
-            blue = 255;
-        }
-        if(H >= 240 && H < 300){
-            red = Math.round(z);    
-            green = 0;
-            blue = 255;
-        }
-        if(H >= 300 && H < 360){
-            red = 255;    
-            green = 0;
-            blue = Math.round(z);
-        }    
-    
-  //  stroke(0);
-//    point(frameIndex,height - 5*i);
-    
-//     stroke('rgb(' + red + ',' + green + ',' + blue + ')');
-   
-      if(i != fmin && i != fmax){
-        if(spectrum[i]< 4){
-            stroke(159,135,103);        
-        }
-        else{
-            stroke('rgba(' + red + ',' + green + ',' + blue + ',' + spectrum[i]/10 + ')');        
-        }
-      } 
-      if(i == fmin){
-            stroke("red");        
-      }
-      if(i == fmax){
-            stroke("blue");        
-      }
-      if(i < fmax && i > fmin){
-          psum += spectrum[i];
-      }
-      point(frameIndex,height - 5*i);
+    let x = map(i, 0, spectrum.length, 0, width);
+    let h = -height + map(spectrum[i], 0, 255, height, 0);
+    rect(x, height, width / spectrum.length, h);
   }
-    
-    stroke("black");  
-    point(frameIndex,height - psum/attenuation);
-
-    if(frameIndex > 3 && frameIndex < width - 1){
-        line(frameIndex - 3,height - psumprev/attenuation,frameIndex,height - psum/attenuation);
-    }    
-
-//  i1000 = 
-  frameIndex += 3;
-  slimeIndex = frameIndex/3;
-  if(frameIndex > width){
-      frameIndex = 0;
-  }
-  psumprev = psum;
 }
-
-
-
-
-
-
-document.getElementById("postbutton").onclick = function(){
-    post();        
-    
-}
-
 
 
 
 function post(){
-    
-    saveslime();
-
+            
     png64 = document.getElementById("defaultCanvas0").toDataURL("image/png");
     var timestamp = Math.round((new Date().getTime())/1000).toString();
     var httpc = new XMLHttpRequest();
     var url = "pngsave.php";        
     httpc.open("POST", url, true);
     httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    httpc.send("data="+encodeURIComponent(png64.substring(22))+"&filename=trashmagic/square" + timestamp +  "-slime.png");//send text to filesaver.php
+    httpc.send("data="+encodeURIComponent(png64.substring(22))+"&filename=trashmagic/square" + timestamp +  "-noiseband.png");//send text to filesaver.php
      //location.reload(); 
      
-    newfilename = "trashmagic/square" + timestamp +  "-slime.png";
+    newfilename = "trashmagic/square" + timestamp +  "-noiseband.png";
     
     var newbox = document.createElement("DIV");
     newbox.classList.add("imagebox");         
@@ -258,20 +181,32 @@ function post(){
 
 
     document.getElementById("feedscroll").insertBefore(newbox,document.getElementById("feedscroll").getElementsByClassName("imagebox")[0]);
-    
+        
+}
+
+function keyPressed() {
+
+    if(key == 's'){
+        post();
+    }
 
 }
 
-function saveslime(){
-        //save slime object as data/slime.txt
-    var url = "filesaver.php";        
-    var httpc666 = new XMLHttpRequest();
-    httpc666.open("POST", url, true);
-    httpc666.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    httpc666.send("data="+encodeURIComponent(JSON.stringify(slime,null,"    "))+"&filename=slime.txt");//send text to filesaver.php
-
+document.body.onclick = function(){
+    if(noiseon == false){
+        noise.start();
+        noiseon = true;
+    }
+    else{
+        noise.stop();
+        noiseon = false;
+        
+    }
 }
 
+document.getElementById("savebutton").onclick = function(){
+    post();
+}
 
 upuploadImages = [];
 var httpc9 = new XMLHttpRequest();
@@ -280,7 +215,7 @@ var httpc9 = new XMLHttpRequest();
         upuploadImages = JSON.parse(this.responseText);
         for(var index = upuploadImages.length - 1;index >= 0;index--) {
             
-            if(upuploadImages[index].includes("-slime")){
+            if(upuploadImages[index].includes("-noiseband")){
             
                 var newbox = document.createElement("DIV");
                 newbox.classList.add("imagebox");         
@@ -323,13 +258,6 @@ var httpc9 = new XMLHttpRequest();
 httpc9.open("GET", "dir.php?filename=trashmagic", true);
 httpc9.send();
 
-function keyPressed() {
-
-    if(key == 's'){
-        post();
-    }
-
-}
 </script>
 <style>
 body{
@@ -343,22 +271,7 @@ main{
     border-left:solid;
     border-width:10px
 }
-#postbutton{
-    position:absolute;
-    top:2em;
-    left:5px;
-    font-family:Comic Sans MS;
-    font-size:1.5em;
-    border:solid;
-    border-radius:10px;
-    text-align:center;
-    border-width:5px;
-    width:8em;
-    cursor:pointer;
-}
-#postbutton:hover{
-    
-}
+
 
 #feedscroll img{
     max-width:80%;
@@ -372,6 +285,7 @@ p{
     margin:1em 1em 1em 1em;
     font-size:1.5em;
     font-family:Comic Sans MS;
+    overflow:scroll;
 }
 h1,h2,h3{
     font-family:Comic Sans MS;
@@ -395,6 +309,24 @@ a{
     background-color:#9f8767;    
     padding:1em 1em 1em 1em;
 }
+#savebutton{
+    text-align:center;
+    border:solid;
+    border-radius:10px;
+    border-width:4px;
+    font-family:Comic Sans MS;
+    font-size:1.5em;
+    width:5em;
+    margin:auto;
+    cursor:pointer;
+}
+#savebutton:hover{
+    background-color:green;
+}
+#savebutton:active{
+    background-color:yellow;
+}
+
 .deletespan{
     color:red;
     border:solid;

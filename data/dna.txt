@@ -14,6 +14,7 @@
         "icon-operator.html",
         "index-board1.txt",
         "index.html",
+        "noiseband.html",
         "oscilloscope.html",
         "qnoise.html",
         "qrcode-page.html",
