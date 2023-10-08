@@ -400,4 +400,8 @@ Fully assembled system with speaker connected to audio output and a solar panel 
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashotron/main/trashmagic/slimezistor-sand.png)
 
+### Free Pants
 
+Cut out squares from scrap cloth of many colors, then cut squares into letters and transmit the meme of free pants by wearing the pants:
+
+![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/free.pants.png)
