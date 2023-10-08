@@ -221,3 +221,15 @@ Then when it's all set up, enable https with lets encrypt by way of nginx proxy 
  - push your code to your github repo
  - use the new replicator code on your github repo to replicate out that instance to all other servers(linux, windows, mac, android) and forks
  - when you figure this out, make youtube videos showing other people how to copy the whole system, tell someone about those videos so that we can all link to them
+ - 
+
+ ### Replicate Phone Stand
+
+![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand1.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand1.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand1.png)
+
+
+![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand1.png)
