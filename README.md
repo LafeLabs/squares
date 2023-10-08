@@ -233,3 +233,77 @@ Then when it's all set up, enable https with lets encrypt by way of nginx proxy 
 
 
 ![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand4.png)
+
+### Relicate Geometron Hypercube
+
+
+![](https://raw.githubusercontent.com/LafeLabs/network/main/trashmagic/sloanslake.png)
+    
+LET'S MAKE 1 BILLION CARDBOARD CUBES!
+    
+BILLIONS OF TONS OF CARDBOARD ARE THROWN OUT PER YEAR!  NOT POUNDS TONS!!! LET'S CAPTURE JUST A TINY SLIVER OF THAT TO MAKE 1 BILLION CUBES!  THIS IS THE CHALLENGE!
+    
+    
+CUT OUT CARDBOARD TRASH INTO THE SIDES, STACK THEM 3 HIGH FOR SINGLE CORRUGATED 2 HIGH FOR DOUBLE CORRUGATED!  4 SIDES PER CUBE! DO THE SAME WITH THE BOTTOM!  USE ELMER'S GLUE TO STACK!  ASSEMBLE WITH GLUE!  GLUE SQUARES TO THE OUTSIDE AND DECORATE WITH INFORMATION ON REPLICATING THE CUBE!  PUT HYPERSIGNS IN THE CUBE!
+    
+BUILD A CUBE AND GET A PRIZE!  BUILD MORE CUBES AND GET MORE PRIZES!  SHOW OTHERS HOW TO COPY CUBES AND GET EVEN MORE PRIZES! INFINITE PRIZES!
+
+we can give cubes to people who can then sell them.  point the web pages to the cubes point the cubes at the web pages.
+    
+    
+GET DIMENSIONS FROM THIS DIAGRAM, THOSE RULERS HAVE INCH AND HALF INCH MARKINGS ON THEM:
+
+![photograph of cardboard side of a cube](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cardboardside.jpg)
+    
+THIS IS THE FILE YOU CAN SEND TO A LASER CUTTER:  PRINT IT 4 INCHES WIDE/HIGH:
+    
+    
+![vector graphics file of cube side cutout for laser cutter](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/side.svg)        
+    
+    
+THIS IS THE LAYOUT OF THE BOTTOM, RULERS SHOW THE INCH AND  HALF INCH MARKINGS. COPY THESE TO GET THE BOTTOM PATTERN:
+
+![photograph of box bottom](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cardboardbottom.jpg)
+    
+VECTOR FILE TO SEND TO THE LASER CUTTER FOR THE BOTTOM:
+    
+![vector graphics file of bottom cutout](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/bottom.svg)
+    
+THIS IS HOW THE SIDES AND BOTTOM FIT TOGETHER, LIKE A PUZZLE:
+    
+![an assembled corner of a cube](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cardboardcorner.jpg)
+    
+    
+TOUCH GRASS:
+
+![a cardboard cube on grass](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/touchgrass.jpg)
+
+THE INTERNET OF DIRT:
+    
+![a cardboard cube with a dandylion in it](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/dandylion0.png)
+    
+
+A HALF INCH GRID SHOWS HOW THE SIDE IS LAYED OUT:
+
+![side of cube with pattern shown to guide replication](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cube-side-pattern.jpg)
+    
+AND THE BOTTOM:
+
+![bottom of a cube with pattern shown to guide layout](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cube-bottom-pattern.jpg)
+
+
+MAKE 3X6 INCH CARDBOARD CARDS AND PUT THEM IN THE CUBE!
+
+
+![cards in a cube](https://raw.githubusercontent.com/LafeLabs/HYPERSIGN/main/trashmagic/cube-cards.png)
+
+
+MAKE CARDS FOR THE VARIOUS ELEMENTS OF THE SET.  These cards are the "hypersign", a network of linked documents written on trash which can represent ANYTHING.
+
+
+![cards in a cube and next to the cube, various things in the set](https://raw.githubusercontent.com/LafeLabs/HYPERSIGN/main/trashmagic/cards-in-cube.png)
+
+![cards in a cube and next to the cube, various things in the set](https://raw.githubusercontent.com/LafeLabs/HYPERSIGN/main/trashmagic/cards-and-cube.png)
+
+
+
