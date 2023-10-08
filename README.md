@@ -306,4 +306,8 @@ MAKE CARDS FOR THE VARIOUS ELEMENTS OF THE SET.  These cards are the "hypersign"
 ![cards in a cube and next to the cube, various things in the set](https://raw.githubusercontent.com/LafeLabs/HYPERSIGN/main/trashmagic/cards-and-cube.png)
 
 
+### Replicate this scroll via QR code
+
+![](https://raw.githubusercontent.com/LafeLabs/HYPERSIGN/main/trashmagic/github-qrcode.png)
+
 
