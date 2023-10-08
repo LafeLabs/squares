@@ -227,9 +227,9 @@ Then when it's all set up, enable https with lets encrypt by way of nginx proxy 
 
 ![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand1.png)
 
-![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand1.png)
+![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand2.png)
 
-![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand1.png)
+![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand3.png)
 
 
-![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand1.png)
+![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/phonestand4.png)
