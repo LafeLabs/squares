@@ -1,5 +1,7 @@
 # [Trash Magic Squares](https://github.com/lafelabs/squares)
 
+![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/github-qrcode.png)
+
 ## Squares: As Above, so below.
 
  - [index.html](index.html)
