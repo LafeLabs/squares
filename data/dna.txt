@@ -39,6 +39,7 @@
         "trimsquares.html",
         "view.html",
         "voice-of-the-slime.html",
+        "washboard.html",
         "webdestroyer.html",
         "webeditor.html"
     ],
