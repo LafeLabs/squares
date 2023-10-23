@@ -4,6 +4,7 @@
         "README.md",
         "coth.html",
         "cubeworld.html",
+        "dtmf.html",
         "fft2svg.html",
         "fork.html",
         "gaussian.html",
