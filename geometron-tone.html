@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+        <title>GEOMETRON TONE GENERATOR</title>
+
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAZ4efAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREAAAAAAAAREQEREREREBERAREREREQEREBEAAAARAREQEQEREBEBERARAQAQEQEREBEBABARAREQEQEREBEBERARAAAAEQEREBERERERAREQEREREREBERAAAAAAAAEREREREREREREREREREREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
+
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+
+</head>
+<body>
+
+
+
+<script>
+
+
+oscon = false;
+
+let osc, fft;
+
+freq = 666;//frequency of sine wave in Hz
+amp = 0.5;//max amplitude
+sweepframes = 30;
+sweepindex = 0;
+
+toneglyph = "0434,0435,0436,0420,0435,0436,0420,0435,0436,0420,0435,0436,0434,0421,0435,0436,";
+inatone = false;
+glyphindex = 0;
+deltaf = 66.6;
+delata = 0.1;
+T = 16;
+deltaT = 4;
+
+
+actions = [];
+toneglypharray = toneglyph.split(",");
+for(var index = 0;index > toneglypharray.length;index++){
+    actions.push(parseInt(toneglypharray[index],8));
+}
+
+function setup() {
+
+//   createCanvas(squaresize, squaresize);    
+
+   osc = new p5.SinOsc(); // set frequency and type
+   osc.amp(amp);
+
+  fft = new p5.FFT();
+  osc.start();
+
+ 
+
+}
+
+
+
+function draw(){
+
+  frameRate(30);
+
+  osc.freq(freq);
+  osc.amp(amp);
+
+}
+
+
+function mouseClicked() {
+  
+  if(!oscon){
+      osc.start();
+  }
+  else{
+      osc.stop();
+  }
+  oscon = !oscon;
+    
+}
+
+
+function action(actionaddress){
+
+    if(actionaddress == 0420){
+        freq += deltaf;
+    }
+    if(actionaddress == 0421){
+        freq -= deltaf;
+    }
+
+    if(actionaddress == 0422){
+        deltaf *= 2;
+    }
+    if(actionaddress == 0423){
+        deltaf /= 2;
+    }
+
+    if(actionaddress == 0424){
+        T += deltaT;
+    }
+    if(actionaddress == 0425){
+        T -= deltaT;
+    }
+
+    if(actionaddress == 0426){
+        deltaT *= 2;
+    }
+    if(actionaddress == 0427){
+        deltaT /= 2;
+    }
+
+    if(actionaddress == 0430){
+        amp += deltaa;
+    }
+    if(actionaddress == 0431){
+        amp -= deltaa;
+    }
+
+    if(actionaddress == 0432){
+        deltaa *= 2;
+    }
+    if(actionaddress == 0433){
+        deltaa /= 2;
+    }
+
+    
+}
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    background-color:#9f8767;    ;
+    font-family:Comic Sans MS;
+}
+</style>
+</body>
+</html>
