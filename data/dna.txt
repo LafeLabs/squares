@@ -8,6 +8,7 @@
         "fft2svg.html",
         "fork.html",
         "gaussian.html",
+        "geometron-tone.html",
         "geometron.html",
         "geometron.js",
         "gyrator-hex.html",
