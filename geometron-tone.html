@@ -59,7 +59,8 @@
 
 <script>
 
-toneglyph = "0434,0422,0422,0425,0425,0425,0435,0436,0420,0435,0436,0420,0435,0436,0420,0435,0436,0420,0435,0420,0435,0420,0435,0420,0435,0420,0435,0420,0435,0420,0435,";
+//toneglyph = "0434,0422,0422,0425,0425,0425,0435,0436,0420,0435,0436,0420,0435,0436,0420,0435,0436,0420,0435,0420,0435,0420,0435,0420,0435,0420,0435,0420,0435,0420,0435,";
+toneglyph = "0434,0425,0422,0422,0435,0420,0435,0420,0435,0420,0435,0420,0435,0420,0435,0420,0435,0420,0435,0420,0435,";
 
 var mainGVM = new GVM(maincanvas,innerWidth-200,innerHeight-200);
 mainGVM.importbytecode(hypercube);
@@ -99,7 +100,8 @@ oscon = false;
 let osc, fft;
 let mic;
 
-freq = 666;//frequency of sine wave in Hz
+f0 = 666.69;
+freq = f0;//frequency of sine wave in Hz
 amp = 0.25;//max amplitude
 sweepframes = 30;
 sweepindex = 0;
@@ -109,8 +111,8 @@ toneindex = 0;
 inatone = false;
 
 glyphindex = 0;
-deltaf = 66.6;
-delataa = 0.1;
+deltaf = 120.6;
+deltaa = 0.1;
 T = 16;
 deltaT = 4;
 
@@ -119,8 +121,10 @@ angles = [];
 spingain = 0.002;
 spinradius = 100;
 xgain = 6;
-n = 12;
-binsize = 10;
+n = 34;
+binsize = 5;
+
+
 
 for(var index = 0;index < n;index++){
     H = index*360/n;
@@ -207,6 +211,11 @@ function draw(){
   mainGVM.clean();
   actions = [];
   toneglypharray = mainGVM.cleanGlyph.split(",");  
+  if(toneglypharray.length > 64){
+      mainGVM.glyph = "0434,0435,0207,";
+      mainGVM.clean();
+      toneglypharray = [0434,0435];
+  }
   for(var index = 0;index < toneglypharray.length;index++){
       if(parseInt(toneglypharray[index],8) != 0207){
          actions.push(parseInt(toneglypharray[index],8));
@@ -293,9 +302,34 @@ function draw(){
       if(-angles[index] > 2*Math.PI){
 //          glyph += (index).toString(64);
           angles[index] += 2*Math.PI;
-          
-
-           
+          if(index == 0){
+            mainGVM.cursorAction(0420);          
+          }
+          if(index == 1){
+            mainGVM.cursorAction(0421);          
+          }
+          if(index == 2){
+            mainGVM.cursorAction(0435);          
+          }
+          if(index == 3){
+            mainGVM.cursorAction(0436);          
+          }
+          if(index == 4){
+            mainGVM.cursorAction(020);          
+          }
+          if(index == 5){
+            mainGVM.cursorAction(010);          
+          }
+          if(index == 6){
+            mainGVM.cursorAction(021);          
+          }
+          if(index == 7){
+            mainGVM.cursorAction(0434);          
+          }
+          if(index > 7){
+            mainGVM.cursorAction(01101 + index);          
+          }
+              
       }
       noFill();
       strokeWeight(1);
@@ -320,9 +354,15 @@ document.getElementById("actioninput").onkeypress = function(a) {
         document.getElementById("spellinput").value = mainGVM.cleanGlyph;
     }
     else{
-            osc.start();
+//            osc.start();
  //        osc.stop();
-        
+          oscon = !oscon;
+          if(oscon){
+              osc.start();
+          }
+          else{
+              osc.stop();
+          }
            glyphindex = 0;
 
     }
@@ -425,11 +465,11 @@ function action(actionaddress){
     }
     if(actionaddress == 0434){
         //reset state to default
-        freq = 666.66;//frequency of sine wave in Hz
+        freq = f0;//frequency of sine wave in Hz
         amp = 0.25;//max amplitude
         T = 16;
         deltaf = 66.6;
-        delata = 0.1;
+        deltaa = 0.1;
         T = 16;
         deltaT = 4;
         osc.stop();
@@ -437,7 +477,10 @@ function action(actionaddress){
 
     }
     if(actionaddress == 0435){
-        osc.start();
+        if(oscon){
+            osc.start();
+        }
+        
         toneindex = 0;
         inatone = true;
         
