@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+        <title>WOOF</title>
+
+
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAC0LP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREBERAREQEREQEREBEREBERAREQERERAREBEQABEREQEQEQEBAREREBARAQEBEREBEBEBAQEREBEQEREBEREBERAREQEREBEREBEREREBEREREREREREREREREREREREREREREREREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
+
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+
+</head>
+<body>
+    
+    
+<div id = "qrcode"></div>
+
+
+<script>
+
+
+if(innerWidth > innerHeight){
+    squaresize = innerHeight;
+    
+}
+else{
+    squaresize = innerWidth;
+    
+}
+
+
+let osc, fft,osc2,osc3;
+oscon = false;
+
+f_earth = 69;
+f_air = 99;
+f_fire = f_air;
+f_water = f_earth;
+
+
+theta = 0;
+phi = 0;
+vx = 0;
+vy = 0;
+
+function setup() {
+
+  createCanvas(squaresize,squaresize);    
+  osc = new p5.SinOsc(); // set frequency and type
+  osc.amp(1.0);
+  osc2 = new p5.SinOsc(); // set frequency and type
+  osc2.amp(1.0);
+  fft = new p5.FFT();
+  // osc.start();
+  //osc2.start();
+
+  osc.freq(f_earth);  
+  osc2.freq(f_air); 
+  
+}
+
+
+
+function draw(){
+  
+  
+  vx = mouseX/squaresize;
+  vy = mouseY/squaresize;
+  if(vx < 0){
+      vx = 0;
+  }
+  if(vx > 1){
+      vx = 1;
+  }
+  if(vy < 0){
+      vy = 0;
+  }
+  if(vy > 1){
+      vy = 1;
+  }
+
+  osc.freq(freq*(1 + vx));  
+  osc2.freq(freq2*(1 + vy)); 
+
+
+}
+
+
+function mouseClicked() {
+  
+  
+  if(mouseX > 0 && mouseX < squaresize && mouseY > 0 && mouseY < squaresize){
+      if(!oscon){
+          osc.start();
+          osc2.start();
+    
+      }
+      else{
+          osc.stop();
+          osc2.stop();
+      }
+      oscon = !oscon;
+  }
+}
+
+
+
+codesquaresize = 80;
+marginsize = 40;
+fontsize = 12;
+//globalurl = "http://www.trashrobot.org/qrcode.html";
+globalurl = window.location.href;
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: globalurl,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+
+</script>
+<style>
+body{
+    background-color:black;
+    
+}
+</style>
+</body>
+</html>
