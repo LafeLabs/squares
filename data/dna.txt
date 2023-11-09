@@ -14,6 +14,7 @@
         "gyrator-hex.html",
         "gyrator.html",
         "gyratorjson.txt",
+        "gyro.html",
         "hypercube.html",
         "icon-artist.html",
         "icon-operator.html",
