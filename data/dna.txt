@@ -48,6 +48,7 @@
         "washboard.html",
         "webdestroyer.html",
         "webeditor.html",
+        "woof-mobile.html",
         "woof.html"
     ],
     "data": [
