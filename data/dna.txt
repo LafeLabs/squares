@@ -47,7 +47,8 @@
         "voice-of-the-slime.html",
         "washboard.html",
         "webdestroyer.html",
-        "webeditor.html"
+        "webeditor.html",
+        "woof.html"
     ],
     "data": [
         "alignimage.txt",

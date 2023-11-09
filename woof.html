@@ -47,16 +47,54 @@
     
 <div id = "qrcode"></div>
 
+<img src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/sun.svg" id = "sun"/>
+<img src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/pentagram.svg" id = "star"/>
+
+<div id = "airbox" class = "elemental">
+    <img src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/air.svg"/>:<input id = "airinput"/>Hz
+</div>
+
+<div id = "firebox" class = "elemental">
+    <img src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/fire.svg"/>:<span id = "firespan"></span> Hz
+</div>
+
+<div id = "waterbox" class = "elemental">
+    <img src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/water.svg"/>:<span id = "waterspan"></span> Hz
+</div>  
+        <div id = "earthbox" class = "elemental">
+    <img src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/earth.svg"/>:<input id = "earthinput"/>Hz
+</div>
+        
+<div id = "zerothetabox">0</div>        
+<div id = "thetabox">$\theta$</div>        
+<div id = "pibox">$\pi$</div>        
+
+<div id = "zerophibox">0</div>        
+<div id = "phibox">$\phi$</div>        
+<div id = "twopibox">$2\pi$</div>        
+        
+<div id = "mainequation">
+    $$
+    \psi = \cos{\left(\frac{\theta}{2}\right)}\left| \textbf{sun} \right> + e^{i\phi}\sin{\left(\frac{\theta}{2}\right)}\left| \textbf{star} \right>
+    $$
+</div>
 
 <script>
 
 
 if(innerWidth > innerHeight){
-    squaresize = innerHeight;
+    squaresize = innerHeight - 160;
+    document.getElementById("sun").style.width = (squaresize).toString() + "px";  
+    document.getElementById("sun").style.left = (20 + (innerWidth - squaresize)/2).toString() + "px";  
+    document.getElementById("sun").style.top = "60px";   
     
+    document.getElementById("star").style.width = (squaresize).toString() + "px";  
+    document.getElementById("star").style.left = (20 + (innerWidth - squaresize)/2).toString() + "px";  
+    document.getElementById("star").style.top = "60px";       
+        
 }
 else{
-    squaresize = innerWidth;
+    squaresize = innerWidth - 100;
     
 }
 
@@ -69,6 +107,15 @@ f_air = 99;
 f_fire = f_air;
 f_water = f_earth;
 
+document.getElementById("earthinput").value = f_earth.toString();
+document.getElementById("airinput").value = f_air.toString();
+
+document.getElementById("earthinput").onchange = function(){
+    f_earth = parseFloat(this.value);
+}
+document.getElementById("airinput").onchange = function(){
+    f_air = parseFloat(this.value);
+}
 
 theta = 0;
 phi = 0;
@@ -89,8 +136,17 @@ function setup() {
   osc.freq(f_earth);  
   osc2.freq(f_air); 
   
-}
+  if(innerWidth > innerHeight){
+        document.getElementsByTagName("MAIN")[0].style.left = ((innerWidth - squaresize)/2).toString() + "px";  
+        document.getElementsByTagName("MAIN")[0].style.top = "50px";   
 
+    }
+    else{
+    
+    }
+
+  
+}
 
 
 function draw(){
@@ -110,10 +166,26 @@ function draw(){
   if(vy > 1){
       vy = 1;
   }
+   
+   theta = Math.PI*vy;
+   phi = 2*Math.PI*vx;
+   f_fire = f_air*(1 + vy);
+   f_water = f_earth*(1 + vx);
+   osc.freq(f_water);  
+   osc2.freq(f_fire); 
+   document.getElementById("firespan").innerHTML = (Math.round(f_fire)).toString();
+   document.getElementById("waterspan").innerHTML = (Math.round(f_water)).toString();
 
-  osc.freq(freq*(1 + vx));  
-  osc2.freq(freq2*(1 + vy)); 
+    document.getElementById("sun").style.opacity = (Math.cos(theta/2)*Math.cos(theta/2)).toString();
+    document.getElementById("star").style.opacity = (Math.sin(theta/2)*Math.sin(theta/2)).toString();    
 
+    document.getElementById("star").style.transform = "rotate(" +  (phi*180/Math.PI).toString() + "deg)";
+    
+    
+   clear();
+   stroke("#ff2cb4");
+   fill("#ff2cb4");
+   circle(mouseX,mouseY,50);
 
 }
 
@@ -155,7 +227,52 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
 <style>
 body{
     background-color:black;
+    color:#ff2cb4;
+    overflow:hidden;
+}
+main{
+    border:solid;
+    border-width:10px;
+    border-color:#ff2cb4;
+    position:absolute;
     
+}
+input{
+    width:2em;
+    font-size:60px;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+}
+#sun{
+    position:absolute;
+    z-index:-1;
+}
+#star{
+    position:absolute;
+    z-index:-2;
+}
+
+.elemental{
+    font-size:60px;
+    font-family:Comic Sans MS;
+}
+.elemental img{
+    width:100px;
+}
+#qrcode{
+    position:absolute;
+    right:10px;
+    top:0px;
+    border:solid;
+    border-width:10px;
+    border-color:white;
+}
+#mainequation{
+    position:absolute;
+    bottom:0px;
+    text-align:center;
+    width:100%;
 }
 </style>
 </body>
