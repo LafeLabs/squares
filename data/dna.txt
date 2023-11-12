@@ -40,6 +40,7 @@
         "tarot.js",
         "text.html",
         "trace.html",
+        "trashdeck.html",
         "trashmagic.css",
         "trashmagic.js",
         "trashrobot-board1.txt",
