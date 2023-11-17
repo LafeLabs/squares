@@ -1,7 +1,7 @@
 [
     {
         "title": "TRASHDECK",
-        "square": "<UL>\n<LI>THE DECK IS A SET OF 22 SQUARES</LI>\n<li>EACH SQUARE REPLICATES</li>\n<li>THE WHOLE DECK REPLICATES</li>\n</UL>\n"
+        "square": "<UL>\n<LI>THE DECK IS A SET OF 22 SQUARES</LI>\n<li>EACH SQUARE REPLICATES</li>\n<li>THE WHOLE DECK REPLICATES</li>\n</UL>\n\n<a href= \"index.html\">home</a>\n"
     },
     {
         "title": "SQUARES",
