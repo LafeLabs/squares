@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+     DECK OF TRASH MAGIC SQUARES
+    -->
+
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA4A8AAO/vAADqrwAA6q8AAOqvAADqrwAA6q8AAOqvAADqrwAA7+8AAMAHAADf9wAAwAcAAPu/AAD4PwAA" rel="icon" type="image/x-icon">
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<!--
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+-->
+
+<!--       un comment to use math
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+    -->
+
+    
+</head>
+<body>    
+
+<img id = "prevbutton" src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/left-arrow.svg"/>    
+<img id = "nextbutton" src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/right-arrow.svg"/>    
+    
+<h1 id = "title"></h1>
+
+<div id = "square"></div>
+
+<div id = "scroll">
+    
+    <table>
+        <tr>
+            <td>SQUARE TITLE:</td>
+            <td>
+                <input id = "titleinput"/>
+            </td>
+        </tr>
+        <tr>
+            <td>SQUARE INDEX</td>
+            <td>
+                <input id = "indexinput"/>
+            </td>
+        </tr>
+    </table>
+    <h2>HTML CODE:</h2>
+    <div id="squarecode" contenteditable="true" spellcheck="false"></div>
+    
+</div>
+
+
+<div id = "qrcode"></div>
+
+<script>
+
+editor = ace.edit("squarecode");
+editor.setTheme("ace/theme/github");
+//editor.setTheme("ace/theme/vibrant_ink");
+editor.getSession().setMode("ace/mode/html");
+editor.getSession().setUseWrapMode(true);
+editor.$blockScrolling = Infinity;
+editor.setTheme("ace/theme/vibrant_ink");
+editor.getSession().setMode("ace/mode/html");
+
+squaresize = 100;
+margin = 100;
+if(innerWidth > innerHeight){
+    squaresize = innerHeight - 200;
+    margin = (innerWidth - innerHeight)/2;
+    document.getElementById("square").style.top = "150px";
+    document.getElementById("square").style.left = (margin + 100).toString() + "px";
+    document.getElementById("square").style.width = squaresize.toString() + "px";
+    document.getElementById("square").style.height = squaresize.toString() + "px";
+    
+    document.getElementById("scroll").style.top = "150px";
+    document.getElementById("scroll").style.width = (margin).toString() + "px";
+}
+
+//load deck
+deck = [];
+deckindex = 0;
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        deck = JSON.parse(this.responseText);
+        editor.setValue(deck[deckindex].square);
+        document.getElementById("title").innerHTML = deck[deckindex].title;
+        document.getElementById("titleinput").value = deck[deckindex].title;
+        document.getElementById("square").innerHTML = deck[deckindex].square;
+        squares = [];
+        for(var index = 0;index < deck.length;index++){
+            var newdiv = document.createElement("DIV");
+            newdiv.className = "subsquare";
+            newdiv.innerHTML = index.toString() + ":" + deck[index].title;
+            newdiv.id = "title" + index.toString();
+            document.getElementById("scroll").appendChild(newdiv);
+            newdiv.onclick = function(){
+                
+                deckindex = parseInt(this.id.substring(5));
+                editor.setValue(deck[deckindex].square);
+    
+                document.getElementById("titleinput").value = deck[deckindex].title;
+                document.getElementById("square").innerHTML = deck[deckindex].square;
+                document.getElementById("title").innerHTML = deck[deckindex].title;
+                document.getElementById("indexinput").value = deckindex.toString();
+
+            }
+            squares.push(newdiv);
+        }
+    }
+};
+httpc.open("GET", "fileloader.php?filename=deck.txt", true);
+httpc.send();
+
+
+
+/*
+for(var index= 0;index < 22;index++){
+    newjson = {};
+    newjson.title = "title";
+    newjson.square = "square";
+    deck.push(newjson);
+}
+savedeck();
+
+*/
+
+function savedeck(){
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(deck,null,"    "))+"&filename=deck.txt");//send text to filesaver.php
+
+}
+
+document.getElementById("squarecode").onkeyup = function() {
+    deck[deckindex].square = editor.getSession().getValue();//this.value;
+    document.getElementById("square").innerHTML = deck[deckindex].square;
+    savedeck();
+        
+}
+
+document.getElementById("titleinput").onchange = function(){
+    document.getElementById("title").innerHTML = this.value;
+    deck[deckindex].title = this.value;
+    squares[deckindex].innerHTML = deckindex.toString()  + ":" + this.value;
+    savedeck();
+}
+document.getElementById("indexinput").value = deckindex.toString();
+document.getElementById("indexinput").onchange = function(){
+    deckindex = parseInt(this.value);
+    document.getElementById("indexinput").value = deckindex.toString();
+    editor.setValue(deck[deckindex].square);
+    document.getElementById("titleinput").value = deck[deckindex].title;
+    document.getElementById("square").innerHTML = deck[deckindex].square;   
+}
+
+
+document.getElementById("prevbutton").onclick  = function(){
+    deckindex--;
+    if(deckindex < 0){
+        deckindex = deck.length -1;
+    }
+    editor.setValue(deck[deckindex].square);
+    document.getElementById("titleinput").value = deck[deckindex].title;
+    document.getElementById("title").innerHTML = deck[deckindex].title;
+    document.getElementById("square").innerHTML = deck[deckindex].square;
+    document.getElementById("indexinput").value = deckindex.toString();
+
+}
+document.getElementById("nextbutton").onclick  = function(){
+    deckindex++;
+    if(deckindex > deck.length - 1){
+        deckindex = 0;
+    }
+    editor.setValue(deck[deckindex].square);
+    document.getElementById("titleinput").value = deck[deckindex].title;
+    document.getElementById("square").innerHTML = deck[deckindex].square;
+    document.getElementById("title").innerHTML = deck[deckindex].title;
+    document.getElementById("indexinput").value = deckindex.toString();
+
+}
+
+codesquaresize = 100;
+marginsize = 40;
+fontsize = 12;
+//globalurl = "http://www.trashrobot.org/qrcode.html";
+globalurl = window.location.href;
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: globalurl,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    font-family:Arial;
+}
+#square{
+    position:absolute;
+    border-width:0.5px;
+}
+#square li{
+    font-size:2em;
+}
+#squarecode{
+    width:90%;
+    height:20em;
+    font-family:courier;
+    color:#00ff00;
+    background-color:black;
+    font-size:14px;
+}
+#title{
+    position:absolute;
+    text-align:center;
+    width:100%;
+    z-index:-1;
+    top:-20px;
+    font-size:70px;
+    left:0px;
+}
+#prevbutton{
+    position:absolute;
+    cursor:pointer;
+    width:100px;
+    left:0px;
+    top:0px;
+}
+#nextbutton{
+    position:absolute;
+    cursor:pointer;
+    width:100px;
+    right:0px;
+    top:0px;
+}
+#scroll{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    overflow:scroll;
+}
+#qrcode{
+    position:absolute;
+    left:10px;
+    bottom:10px;
+    border:solid;
+    border-color:white;
+    border-width:10px;
+}
+.subsquare{
+    cursor:pointer;
+    margin-bottom:0.25em;
+}
+</style>
+</body>
+</html>
