@@ -24,6 +24,7 @@
         "imagefeed.txt",
         "index-board1.txt",
         "index.html",
+        "mixtape.html",
         "motd.html",
         "motd.txt",
         "noiseband.html",
