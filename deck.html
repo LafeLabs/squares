@@ -38,6 +38,7 @@
 <body>    
 
 <img id = "prevbutton" src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/left-arrow.svg"/>    
+<img id = "editbutton" src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/edit.svg"/>
 <img id = "nextbutton" src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/right-arrow.svg"/>    
     
 <h1 id = "title"></h1>
@@ -218,6 +219,38 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
 });
 
 
+editmode = true;
+document.getElementById("editbutton").onclick = function(){
+    editmode = !editmode;
+    if(editmode){
+        document.getElementById("scroll").style.display = "block";
+    }
+    else{
+        document.getElementById("scroll").style.display = "none";
+    }
+}
+stylemode = 0;
+document.getElementById("stylebutton").onclick = function(){
+    stylemode++;
+    if(stylemode > 2){
+        stylemode = 0;
+    }
+    if(stylemode == 0){
+        document.getElementById("stylebutton").innerHTML = "P0W3RP01NT";
+        document.body.style.backgroundColor = "white";
+    }
+    if(stylemode == 1){
+        document.getElementById("stylebutton").innerHTML = "CARDBOARD";
+            document.body.style.backgroundColor = "#9f8767";
+
+    }
+    if(stylemode == 2){
+        document.getElementById("stylebutton").innerHTML = "PURPLE";
+        document.body.style.backgroundColor = "purple";
+    }
+    
+}
+
 </script>
 <style>
 body{
@@ -275,6 +308,13 @@ body{
     width:100px;
     right:0px;
     top:0px;
+}
+#editbutton{
+    position:absolute;
+    cursor:pointer;
+    width:80px;
+    right:120px;
+    top:10px;
 }
 #scroll{
     position:absolute;
