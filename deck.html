@@ -238,15 +238,47 @@ document.getElementById("stylebutton").onclick = function(){
     if(stylemode == 0){
         document.getElementById("stylebutton").innerHTML = "P0W3RP01NT";
         document.body.style.backgroundColor = "white";
+        document.getElementById("square").style.backgroundColor = "#ffffff00";
+        document.getElementById("editbutton").style.backgroundColor = "#ffffff00";    
+        document.getElementById("nextbutton").style.backgroundColor = "#ffffff00";
+        document.getElementById("prevbutton").style.backgroundColor = "#ffffff00";
+        document.getElementById("square").style.border = "none";
+        document.getElementById("square").style.color = "black";  
+        document.getElementById("title").style.color = "black";  
+        document.getElementById("square").style.borderRadius = "10px";  
+        document.getElementById("scroll").style.color = "black";  
+        document.getElementById("scroll").style.backgroundColor = "#ffffff00";
     }
     if(stylemode == 1){
         document.getElementById("stylebutton").innerHTML = "CARDBOARD";
             document.body.style.backgroundColor = "#9f8767";
-
+        document.getElementById("square").style.backgroundColor = "#ffffff00";
+        document.getElementById("editbutton").style.backgroundColor = "#ffffff00";    
+        document.getElementById("nextbutton").style.backgroundColor = "#ffffff00";
+        document.getElementById("prevbutton").style.backgroundColor = "#ffffff00";
+        document.getElementById("square").style.border = "none";
+        document.getElementById("square").style.color = "black";  
+        document.getElementById("title").style.color = "black";  
+        document.getElementById("square").style.borderRadius = "10px";  
+        document.getElementById("scroll").style.color = "black";  
+        document.getElementById("scroll").style.backgroundColor = "#ffffff00";
     }
     if(stylemode == 2){
         document.getElementById("stylebutton").innerHTML = "PURPLE";
-        document.body.style.backgroundColor = "purple";
+        document.body.style.backgroundColor = "black";
+        document.getElementById("square").style.backgroundColor = "#ff00ff20";
+        document.getElementById("editbutton").style.backgroundColor = "#ff2cb4";    
+        document.getElementById("nextbutton").style.backgroundColor = "#ff2cb4";
+        document.getElementById("prevbutton").style.backgroundColor = "#ff2cb4";
+        document.getElementById("square").style.border = "solid";
+        document.getElementById("square").style.color = "#ff2cb4";  
+        document.getElementById("square").style.borderColor = "#ff2cb4";  
+        document.getElementById("title").style.color = "#ff2cb4";  
+        document.getElementById("square").style.borderRadius = "10px";  
+        document.getElementById("scroll").style.color = "#ff2cb4";  
+        document.getElementById("scroll").style.backgroundColor = "#404040";  
+        
+        
     }
     
 }
@@ -256,6 +288,9 @@ document.getElementById("stylebutton").onclick = function(){
 body{
     overflow:hidden;
     font-family:Arial;
+}
+a{
+    color:blue;
 }
 #stylebutton{
     border:solid;
