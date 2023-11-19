@@ -106,7 +106,7 @@ httpc.onreadystatechange = function(){
     if (this.readyState == 4 && this.status == 200) {
         deck = JSON.parse(this.responseText);
         editor.setValue(deck[deckindex].square);
-        document.getElementById("title").innerHTML = deck[deckindex].title;
+        document.getElementById("title").innerHTML = (deckindex + 1).toString() + ":" + deck[deckindex].title;
         document.getElementById("titleinput").value = deck[deckindex].title;
         document.getElementById("square").innerHTML = deck[deckindex].square;
         squares = [];
@@ -124,7 +124,7 @@ httpc.onreadystatechange = function(){
                 document.getElementById("titleinput").value = deck[deckindex].title;
                 document.getElementById("square").innerHTML = deck[deckindex].square;
                 document.getElementById("title").innerHTML = deck[deckindex].title;
-                document.getElementById("indexinput").value = deckindex.toString();
+                document.getElementById("indexinput").value = (deckindex + 1).toString();
 
             }
             squares.push(newdiv);
@@ -169,12 +169,11 @@ document.getElementById("titleinput").onchange = function(){
     squares[deckindex].innerHTML = deckindex.toString()  + ":" + this.value;
     savedeck();
 }
-document.getElementById("indexinput").value = deckindex.toString();
+document.getElementById("indexinput").value = (deckindex + 1).toString();
 document.getElementById("indexinput").onchange = function(){
-    deckindex = parseInt(this.value);
-    document.getElementById("indexinput").value = deckindex.toString();
+    deckindex = parseInt(this.value - 1);
     editor.setValue(deck[deckindex].square);
-    document.getElementById("titleinput").value = deck[deckindex].title;
+    document.getElementById("titleinput").value = (deckindex + 1).toString() + ":" + deck[deckindex].title;
     document.getElementById("square").innerHTML = deck[deckindex].square;   
 }
 
@@ -186,9 +185,9 @@ document.getElementById("prevbutton").onclick  = function(){
     }
     editor.setValue(deck[deckindex].square);
     document.getElementById("titleinput").value = deck[deckindex].title;
-    document.getElementById("title").innerHTML = deck[deckindex].title;
+    document.getElementById("title").innerHTML = (deckindex + 1).toString() + ":" + deck[deckindex].title;
     document.getElementById("square").innerHTML = deck[deckindex].square;
-    document.getElementById("indexinput").value = deckindex.toString();
+    document.getElementById("indexinput").value = (deckindex + 1).toString();
 
 }
 document.getElementById("nextbutton").onclick  = function(){
@@ -199,8 +198,8 @@ document.getElementById("nextbutton").onclick  = function(){
     editor.setValue(deck[deckindex].square);
     document.getElementById("titleinput").value = deck[deckindex].title;
     document.getElementById("square").innerHTML = deck[deckindex].square;
-    document.getElementById("title").innerHTML = deck[deckindex].title;
-    document.getElementById("indexinput").value = deckindex.toString();
+    document.getElementById("title").innerHTML = (deckindex + 1).toString() + ":" + deck[deckindex].title;
+    document.getElementById("indexinput").value = (deckindex + 1).toString();
 
 }
 
