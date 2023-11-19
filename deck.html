@@ -43,7 +43,10 @@
     
 <h1 id = "title"></h1>
 
-<div id = "square"></div>
+<div id = "square">
+</div>
+
+<img id = "mainimage" src = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/pentagram-fractal.svg"/>
 
 <div id = "scroll">
 
@@ -93,8 +96,16 @@ if(innerWidth > innerHeight){
     document.getElementById("square").style.width = squaresize.toString() + "px";
     document.getElementById("square").style.height = squaresize.toString() + "px";
     
+    document.getElementById("mainimage").style.bottom = "0px";
+    document.getElementById("mainimage").style.left = (margin + 100).toString() + "px";
+    document.getElementById("mainimage").style.width = squaresize.toString() + "px";
+
+    
     document.getElementById("scroll").style.top = "150px";
     document.getElementById("scroll").style.width = (margin).toString() + "px";
+}
+else{
+    
 }
 
 //load deck
@@ -363,6 +374,11 @@ a{
     border:solid;
     border-color:white;
     border-width:10px;
+}
+#mainimage{
+    position:absolute;
+    z-index:-1;
+    opacity:0.5;
 }
 .subsquare{
     cursor:pointer;
