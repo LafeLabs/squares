@@ -96,7 +96,7 @@ if(innerWidth > innerHeight){
     document.getElementById("square").style.width = squaresize.toString() + "px";
     document.getElementById("square").style.height = squaresize.toString() + "px";
     
-    document.getElementById("mainimage").style.bottom = "10px";
+    document.getElementById("mainimage").style.bottom = "50px";
     document.getElementById("mainimage").style.left = (margin + 100 + 0.25*squaresize).toString() + "px";
     document.getElementById("mainimage").style.width = (0.5*squaresize).toString() + "px";
 
@@ -239,7 +239,27 @@ document.getElementById("editbutton").onclick = function(){
         document.getElementById("scroll").style.display = "none";
     }
 }
-stylemode = 0;
+stylemode = 1;
+
+document.getElementById("mainimage").src  = "";
+
+document.getElementById("stylebutton").innerHTML = "CARDBOARD";
+    document.body.style.backgroundColor = "#9f8767";
+document.getElementById("square").style.backgroundColor = "#ffffff00";
+document.getElementById("editbutton").style.backgroundColor = "#ffffff00";    
+document.getElementById("nextbutton").style.backgroundColor = "#ffffff00";
+document.getElementById("prevbutton").style.backgroundColor = "#ffffff00";
+document.getElementById("square").style.border = "none";
+document.getElementById("square").style.color = "black";  
+document.getElementById("title").style.color = "black";  
+document.getElementById("square").style.borderRadius = "10px";  
+document.getElementById("scroll").style.color = "black";  
+document.getElementById("scroll").style.backgroundColor = "#ffffff00";
+document.getElementById("mainimage").src  = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/deck-replication-glyph.svg";
+
+document.getElementById("square").style.fontFamily = "Comic Sans MS";
+document.getElementById("title").style.fontFamily = "Comic Sans MS";
+
 document.getElementById("stylebutton").onclick = function(){
     stylemode++;
     if(stylemode > 2){
@@ -248,6 +268,7 @@ document.getElementById("stylebutton").onclick = function(){
     if(stylemode == 0){
         document.getElementById("stylebutton").innerHTML = "P0W3RP01NT";
         document.body.style.backgroundColor = "white";
+        document.getElementById("mainimage").src  = "";
         document.getElementById("square").style.backgroundColor = "#ffffff00";
         document.getElementById("editbutton").style.backgroundColor = "#ffffff00";    
         document.getElementById("nextbutton").style.backgroundColor = "#ffffff00";
@@ -258,6 +279,9 @@ document.getElementById("stylebutton").onclick = function(){
         document.getElementById("square").style.borderRadius = "10px";  
         document.getElementById("scroll").style.color = "black";  
         document.getElementById("scroll").style.backgroundColor = "#ffffff00";
+        document.getElementById("square").style.fontFamily = "Arial";
+        document.getElementById("title").style.fontFamily = "Arial";
+
     }
     if(stylemode == 1){
         document.getElementById("stylebutton").innerHTML = "CARDBOARD";
@@ -272,6 +296,10 @@ document.getElementById("stylebutton").onclick = function(){
         document.getElementById("square").style.borderRadius = "10px";  
         document.getElementById("scroll").style.color = "black";  
         document.getElementById("scroll").style.backgroundColor = "#ffffff00";
+        document.getElementById("mainimage").src  = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/deck-replication-glyph.svg";
+        document.getElementById("square").style.fontFamily = "Comic Sans MS";
+        document.getElementById("title").style.fontFamily = "Comic Sans MS";
+
     }
     if(stylemode == 2){
         document.getElementById("stylebutton").innerHTML = "PURPLE";
@@ -287,8 +315,10 @@ document.getElementById("stylebutton").onclick = function(){
         document.getElementById("square").style.borderRadius = "10px";  
         document.getElementById("scroll").style.color = "#ff2cb4";  
         document.getElementById("scroll").style.backgroundColor = "#404040";  
-        
-        
+        document.getElementById("mainimage").src  = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/deck-replication-glyph-pink.svg";
+     document.getElementById("square").style.fontFamily = "courier";
+        document.getElementById("title").style.fontFamily = "courier";
+   
     }
     
 }
