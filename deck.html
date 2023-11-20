@@ -60,6 +60,13 @@
                 <input id = "titleinput"/>
             </td>
         </tr>
+
+        <tr>
+            <td>IMAGE URL</td>
+            <td>
+                <input id = "imageurlinput"/>
+            </td>
+        </tr>
         <tr>
             <td>SQUARE INDEX</td>
             <td>
@@ -76,6 +83,7 @@
 <div id = "qrcode"></div>
 
 <script>
+
 
 editor = ace.edit("squarecode");
 editor.setTheme("ace/theme/github");
@@ -105,7 +113,21 @@ if(innerWidth > innerHeight){
     document.getElementById("scroll").style.width = (margin).toString() + "px";
 }
 else{
+    squaresize = innerWidth - 200;
+    margin = (innerHeight - innerWidth)/2;
     
+    document.getElementById("square").style.top = (margin + 100).toString() + "px";
+    document.getElementById("square").style.left = "150px";
+    document.getElementById("square").style.width = squaresize.toString() + "px";
+    document.getElementById("square").style.height = squaresize.toString() + "px";
+    
+    document.getElementById("mainimage").style.bottom = (margin + 50).toString() + "px";
+    document.getElementById("mainimage").style.left = (100 + 0.25*squaresize).toString() + "px";
+    document.getElementById("mainimage").style.width = (0.5*squaresize).toString() + "px";
+
+    
+    document.getElementById("scroll").style.height = (margin).toString() + "px";
+    document.getElementById("scroll").style.width = (innerWidth - 200).toString() + "px";
 }
 
 //load deck
@@ -120,6 +142,14 @@ httpc.onreadystatechange = function(){
         document.getElementById("title").innerHTML = (deckindex + 1).toString() + ":" + deck[deckindex].title;
         document.getElementById("titleinput").value = deck[deckindex].title;
         document.getElementById("square").innerHTML = deck[deckindex].square;
+        document.getElementById("mainimage").src = deck[deckindex].imageurl;
+        if(deck[deckindex].imageurl.length > 0){
+            document.getElementById("mainimage").style.border = "solid";
+        }
+        else{
+            document.getElementById("mainimage").style.border = "none";
+        }
+
         squares = [];
         for(var index = 0;index < deck.length;index++){
             var newdiv = document.createElement("DIV");
@@ -131,8 +161,16 @@ httpc.onreadystatechange = function(){
                 
                 deckindex = parseInt(this.id.substring(5));
                 editor.setValue(deck[deckindex].square);
-    
+                if(deck[deckindex].imageurl.length > 0){
+                    document.getElementById("mainimage").style.border = "solid";
+                }
+                else{
+                    document.getElementById("mainimage").style.border = "none";
+                }
+
                 document.getElementById("titleinput").value = deck[deckindex].title;
+                    document.getElementById("mainimage").src = deck[deckindex].imageurl;
+                document.getElementById("imageurlinput").value  = deck[deckindex].imageurl;      
                 document.getElementById("square").innerHTML = deck[deckindex].square;
                 document.getElementById("title").innerHTML = deck[deckindex].title;
                 document.getElementById("indexinput").value = (deckindex + 1).toString();
@@ -174,18 +212,38 @@ document.getElementById("squarecode").onkeyup = function() {
         
 }
 
+
+document.getElementById("imageurlinput").value = "";
+document.getElementById("imageurlinput").onchange = function(){
+    document.getElementById("mainimage").src = this.value;
+    deck[deckindex].imageurl = this.value;
+    savedeck();
+        
+}
+
 document.getElementById("titleinput").onchange = function(){
     document.getElementById("title").innerHTML = this.value;
     deck[deckindex].title = this.value;
     squares[deckindex].innerHTML = deckindex.toString()  + ":" + this.value;
     savedeck();
 }
+
 document.getElementById("indexinput").value = (deckindex + 1).toString();
 document.getElementById("indexinput").onchange = function(){
     deckindex = parseInt(this.value - 1);
     editor.setValue(deck[deckindex].square);
     document.getElementById("titleinput").value = (deckindex + 1).toString() + ":" + deck[deckindex].title;
-    document.getElementById("square").innerHTML = deck[deckindex].square;   
+    document.getElementById("imageurlinput").value  = deck[deckindex].imageurl;       
+    document.getElementById("mainimage").src = deck[deckindex].imageurl;
+
+    document.getElementById("square").innerHTML = deck[deckindex].square;
+    if(deck[deckindex].imageurl.length > 0){
+        document.getElementById("mainimage").style.border = "solid";
+    }
+    else{
+        document.getElementById("mainimage").style.border = "none";
+    }
+
 }
 
 
@@ -196,9 +254,17 @@ document.getElementById("prevbutton").onclick  = function(){
     }
     editor.setValue(deck[deckindex].square);
     document.getElementById("titleinput").value = deck[deckindex].title;
+    document.getElementById("mainimage").src = deck[deckindex].imageurl;
+    document.getElementById("imageurlinput").value  = deck[deckindex].imageurl;       
     document.getElementById("title").innerHTML = (deckindex + 1).toString() + ":" + deck[deckindex].title;
     document.getElementById("square").innerHTML = deck[deckindex].square;
     document.getElementById("indexinput").value = (deckindex + 1).toString();
+    if(deck[deckindex].imageurl.length > 0){
+        document.getElementById("mainimage").style.border = "solid";
+    }
+    else{
+        document.getElementById("mainimage").style.border = "none";
+    }
 
 }
 document.getElementById("nextbutton").onclick  = function(){
@@ -208,9 +274,18 @@ document.getElementById("nextbutton").onclick  = function(){
     }
     editor.setValue(deck[deckindex].square);
     document.getElementById("titleinput").value = deck[deckindex].title;
+    document.getElementById("mainimage").src = deck[deckindex].imageurl;
+    document.getElementById("imageurlinput").value  = deck[deckindex].imageurl;          
     document.getElementById("square").innerHTML = deck[deckindex].square;
     document.getElementById("title").innerHTML = (deckindex + 1).toString() + ":" + deck[deckindex].title;
     document.getElementById("indexinput").value = (deckindex + 1).toString();
+    
+    if(deck[deckindex].imageurl.length > 0){
+        document.getElementById("mainimage").style.border = "solid";
+    }
+    else{
+        document.getElementById("mainimage").style.border = "none";
+    }
 
 }
 
@@ -255,7 +330,7 @@ document.getElementById("title").style.color = "black";
 document.getElementById("square").style.borderRadius = "10px";  
 document.getElementById("scroll").style.color = "black";  
 document.getElementById("scroll").style.backgroundColor = "#ffffff00";
-document.getElementById("mainimage").src  = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/deck-replication-glyph.svg";
+
 
 document.getElementById("square").style.fontFamily = "Comic Sans MS";
 document.getElementById("title").style.fontFamily = "Comic Sans MS";
@@ -268,7 +343,6 @@ document.getElementById("stylebutton").onclick = function(){
     if(stylemode == 0){
         document.getElementById("stylebutton").innerHTML = "P0W3RP01NT";
         document.body.style.backgroundColor = "white";
-        document.getElementById("mainimage").src  = "";
         document.getElementById("square").style.backgroundColor = "#ffffff00";
         document.getElementById("editbutton").style.backgroundColor = "#ffffff00";    
         document.getElementById("nextbutton").style.backgroundColor = "#ffffff00";
@@ -296,7 +370,7 @@ document.getElementById("stylebutton").onclick = function(){
         document.getElementById("square").style.borderRadius = "10px";  
         document.getElementById("scroll").style.color = "black";  
         document.getElementById("scroll").style.backgroundColor = "#ffffff00";
-        document.getElementById("mainimage").src  = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/deck-replication-glyph.svg";
+
         document.getElementById("square").style.fontFamily = "Comic Sans MS";
         document.getElementById("title").style.fontFamily = "Comic Sans MS";
 
@@ -315,13 +389,13 @@ document.getElementById("stylebutton").onclick = function(){
         document.getElementById("square").style.borderRadius = "10px";  
         document.getElementById("scroll").style.color = "#ff2cb4";  
         document.getElementById("scroll").style.backgroundColor = "#404040";  
-        document.getElementById("mainimage").src  = "https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/deck-replication-glyph-pink.svg";
      document.getElementById("square").style.fontFamily = "courier";
         document.getElementById("title").style.fontFamily = "courier";
    
     }
     
 }
+
 
 </script>
 <style>
@@ -349,6 +423,7 @@ a{
 #square{
     position:absolute;
     border-width:0.5px;
+    overflow:scroll;
 }
 #square li{
     font-size:2em;
