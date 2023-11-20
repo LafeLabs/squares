@@ -143,6 +143,7 @@ httpc.onreadystatechange = function(){
         document.getElementById("titleinput").value = deck[deckindex].title;
         document.getElementById("square").innerHTML = deck[deckindex].square;
         document.getElementById("mainimage").src = deck[deckindex].imageurl;
+        document.getElementById("imageurlinput").value  = deck[deckindex].imageurl; 
         if(deck[deckindex].imageurl.length > 0){
             document.getElementById("mainimage").style.border = "solid";
         }
