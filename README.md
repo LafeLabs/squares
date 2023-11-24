@@ -23,12 +23,29 @@ Trash Magic Replicator url:
 https://raw.githubusercontent.com/LafeLabs/squares/main/php/replicator.txt
 ```
 
-## 1. Replicate cardboard squares
+## Replicate cardboard squares
 
 4 inch cardboard squares.
 
+## TRASH MAGIC FLAGS
 
-## 2. Replicate Trash Magic Server
+![delete big tech squares to replicate the set flag](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/delete-flag-replicator.png)
+
+![delete big tech square set flag](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/delete-flag-squares.png)
+
+![delete big tech flag with square letters ](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/delete-flag-square.png)
+
+![delete big tech flag with rounded letters](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/delete-flag-rounded.png)
+
+![trash robot symbol flag](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/trashrobot-flag-symbolside.png)
+
+![trash robot domain flag](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/trashrobot-flag-wordside.png)
+
+![colfax flag](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/colfax-flag.png)
+  
+![sloans lake flag](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/solanslake-flag.png)
+
+## Replicate Trash Magic Server
 
 Go find a laptop in the trash and install Ubuntu on it.  
 
@@ -70,7 +87,7 @@ You can use these machines to access servers over local networks, access servers
 
 
 
-## 3. Replicate Magic Dump 
+## Replicate Magic Dump 
 
 
 A TRASH MAGIC DUMP is an Internet connection controlled by a TRASH MAGIC OPERATOR, which can be set up to host multiple TRASH SERVERS and [RECURSIVE WEB](https://github.com/LafeLabs/trashmagic/tree/main/web/recursiveweb) instances.  
