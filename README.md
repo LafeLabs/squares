@@ -43,7 +43,7 @@ https://raw.githubusercontent.com/LafeLabs/squares/main/php/replicator.txt
 
 ![colfax flag](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/colfax-flag.png)
   
-![sloans lake flag](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/solanslake-flag.png)
+![sloans lake flag](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/sloanslake-flag.png)
 
 ## Replicate Trash Magic Server
 
