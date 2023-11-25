@@ -36,6 +36,7 @@
         "readmeeditor.html",
         "sigil.html",
         "sigil.txt",
+        "sineotron.html",
         "slime.html",
         "slime.txt",
         "slime2svg.html",
