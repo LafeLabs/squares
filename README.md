@@ -6,6 +6,7 @@
 
  - [index.html](index.html)
  - [http://localhost/](http://localhost/)
+ - [https://www.quantumart.org](https://www.quantumart.org)
  - [https://www.southbroadway.net](https://www.southbroadway.net)
  - [https://www.colfax.site](https://www.colfax.site)
  - [https://www.sloanslake.art](https://www.sloanslake.art)
@@ -90,7 +91,7 @@ You can use these machines to access servers over local networks, access servers
 ## Replicate Magic Dump 
 
 
-A TRASH MAGIC DUMP is an Internet connection controlled by a TRASH MAGIC OPERATOR, which can be set up to host multiple TRASH SERVERS and [RECURSIVE WEB](https://github.com/LafeLabs/trashmagic/tree/main/web/recursiveweb) instances.  
+A TRASH MAGIC DUMP is an Internet connection controlled by a TRASH MAGIC OPERATOR, which can be set up to host multiple TRASH SERVERS.  
 
 If you are an Operator with multiple TRASH MAGIC servers and you want to set up a dump, first choose one of the servers to act as a DUMP DIRECTOR.  To convert it to DUMP DIRECTOR you want to first stop and disable the Apache web server, since we're going to use another server instead.  A DUMP DIRECTOR is an [NGINX SERVER](https://www.nginx.com/) set up using [DOCKER ](https://www.docker.com/) and the GUI tool from [nginxproxymanager](https://nginxproxymanager.com/setup/#running-the-app). 
 
@@ -419,8 +420,18 @@ Fully assembled system with speaker connected to audio output and a solar panel 
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashotron/main/trashmagic/slimezistor-sand.png)
 
-### Free Pants
+### FREE CLOTHES!
 
-Cut out squares from scrap cloth of many colors, then cut squares into letters and transmit the meme of free pants by wearing the pants:
+GET CLOTHES FROM TRASH! CUT THEM UP AND STITCH THEM TOGETHER IN CLONES OF EXISTING CLOTHES YOU LIKE THAT ALREADY FIT!  CUT OUT 4 INCH COLORED SQUARES OF CLOTH!  SEW THEM ON TO MAKE FREE MEDIA! WEAR AND SHARE!
 
 ![](https://raw.githubusercontent.com/LafeLabs/squares/main/trashmagic/free.pants.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/freepants/main/trashmagic/replicator-set.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/freepants/main/trashmagic/freesuit.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/freepants/main/trashmagic/dress-back.jpeg)
+
+MAKE ZINES FROM TRASH TO REPLICATE THE FREE CLOTHES:
+
+![](https://raw.githubusercontent.com/LafeLabs/freepants/main/trashmagic/zine.png)
