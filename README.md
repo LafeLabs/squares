@@ -435,3 +435,10 @@ GET CLOTHES FROM TRASH! CUT THEM UP AND STITCH THEM TOGETHER IN CLONES OF EXISTI
 MAKE ZINES FROM TRASH TO REPLICATE THE FREE CLOTHES:
 
 ![](https://raw.githubusercontent.com/LafeLabs/freepants/main/trashmagic/zine.png)
+
+4 INCH CARDBOARD SQUARES CAN REPLICATE ANY ELEMENT IN THE SETS!
+
+
+IT'S JUST MEMES! MEMES OF SELF REPLICATING GEOMETRY MADE OF TRASH!
+
+![](https://raw.githubusercontent.com/LafeLabs/freepants/main/trashmagic/square-set.png)
