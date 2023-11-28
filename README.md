@@ -432,6 +432,8 @@ GET CLOTHES FROM TRASH! CUT THEM UP AND STITCH THEM TOGETHER IN CLONES OF EXISTI
 
 ![](https://raw.githubusercontent.com/LafeLabs/freepants/main/trashmagic/dress-back.jpeg)
 
+![](https://raw.githubusercontent.com/LafeLabs/freepants/main/trashmagic/quilt1.png)
+
 MAKE ZINES FROM TRASH TO REPLICATE THE FREE CLOTHES:
 
 ![](https://raw.githubusercontent.com/LafeLabs/freepants/main/trashmagic/zine.png)
