@@ -444,3 +444,7 @@ MAKE ZINES FROM TRASH TO REPLICATE THE FREE CLOTHES:
 IT'S JUST MEMES! MEMES OF SELF REPLICATING GEOMETRY MADE OF TRASH!
 
 ![](https://raw.githubusercontent.com/LafeLabs/freepants/main/trashmagic/square-set.png)
+
+GO FORTH AND REPLICATE!
+
+![](https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg)
