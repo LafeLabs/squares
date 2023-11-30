@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+        <title>HYPERSPACE</title>
+
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAZ4efAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREAAAAAAAAREQEREREREBERAREREREQEREBEAAAARAREQEQEREBEBERARAQAQEQEREBEBABARAREQEQEREBEBERARAAAAEQEREBERERERAREQEREREREBERAAAAAAAAEREREREREREREREREREREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
+
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="geometron.js"></script>
+</head>
+<body>
+<div id = "squarebox">
+    <div id = "mapbox"><canvas id= "mapcanvas"></canvas></div>
+    <div class = "dirbox" id = "nbox"><canvas id= "ncanvas"></canvas></div>
+    <div class = "dirbox" id = "nebox"><canvas id= "necanvas"></canvas></div>
+    <div class = "dirbox" id = "ebox"><canvas id= "ecanvas"></canvas></div>
+    <div class = "dirbox" id = "sebox"><canvas id= "secanvas"></canvas></div>
+    <div class = "dirbox" id = "sbox"><canvas id= "scanvas"></canvas></div>
+    <div class = "dirbox" id = "swbox"><canvas id= "swcanvas"></canvas></div>
+    <div class = "dirbox" id = "wbox"><canvas id= "wcanvas"></canvas></div>
+    <div class = "dirbox" id = "nwbox"><canvas id= "nwcanvas"></canvas></div>
+</div>
+<textarea id = "scroll"></textarea>
+    
+<script>
+
+shapes = [
+        "0220:0336,0336,0336,0331,0333,0337,0204,0336,0330,0332,0337,0337,0337,",
+        "0221:0342,0330,0220,0331,0350,0334,0310,0337,0342,0330,0335,0336,0304,0313,0220,0333,0333,0220,0331,0332,0350,0335,0310,0337,0342,0334,0336,0304,0313,",
+        "0222:0313,0350,0334,0310,0337,0201,0335,0336,0304,0313,0220,",
+        "0223:0350,0335,0310,0337,0342,0334,0304,0336,0333,0330,0313,0220,",
+        "0224:0201,0322,0220,0323,0221,0330,0324,0221,0330,0325,0221,0330,0326,0221,0327,0330,0221,0327,0330,0331,0331,0331,0331,0331,0322,0333,0330,0323,0324,0223,0325,0223,0326,0223,0327,0223,0331,0332,0331,0332,0331,0332,0331,0332,0332,0324,0223,0325,0223,0326,0223,0327,0223,0331,0332,0331,0332,0332,0331,0332,0325,0223,0326,0223,0327,0223,0331,0331,0332,0332,0332,0325,0326,0223,0327,0223,0331,0332,0332,0327,0223,0331,0332,0332,0331,0331,0331,0324,0222,0325,0222,0326,0222,0327,0222,0331,0333,0331,0333,0331,0333,0331,0333,0333,0324,0222,0325,0222,0326,0222,0327,0222,0331,0333,0333,0331,0333,0333,0331,0325,0222,0326,0222,0327,0222,0333,0331,0333,0331,0333,0326,0222,0327,0222,0333,0333,0331,0327,0222,0333,0331,0331,0331,0331,0331,0331,0320,",
+        "0225:0220,0224,0335,0224,0335,0224,0335,0224,0337,0337,0337,0335,0331,0333,0337,0327,0336,0330,0332,0336,0336,0336,0320,",
+        "0226:0336,0331,0333,0337,0336,0330,0332,0337,0336,0336,0331,0333,0337,0200,0336,0330,0332,0337,0337,",
+        "0227:0201,0335,0335,0336,0306,0350,0335,0362,0203,0334,0334,0334,0334,0203,0334,0334,0334,0334,0203,0363,0335,0337,0331,0304,",
+        "0230:0330,",
+        "0231:0330,0333,",
+        "0232:0333,",
+        "0233:0331,0333,",
+        "0234:0331,",
+        "0235:0331,0332,",
+        "0236:0332,",
+        "0237:0330,0332,",
+        "01220:0333,0200,0336,0330,0332,0220,0313,0331,0333,0337,",
+        "01221:0333,0200,0336,0330,0332,0221,0313,0331,0333,0337,",
+        "01222:0333,0200,0336,0330,0332,0336,0222,0313,0331,0333,0331,0333,0331,0333,0337,0337,",
+        "01223:0333,0200,0336,0330,0332,0336,0223,0333,0331,0331,0331,0337,0337,",
+        "01224:0333,0200,0336,0330,0332,0336,0331,0336,0336,0224,0337,0337,0331,0333,0333,0337,0337,",
+        "01225:0333,0200,0336,0330,0332,0336,0336,0336,0225,0337,0337,0337,0331,0333,0337,",
+        "01226:0333,0200,0336,0330,0332,0226,0331,0333,0337,",
+        "01227:0333,0200,0336,0330,0332,0336,0331,0337,0227,0336,0331,0333,0333,0337,0337,",
+        "01230:0333,0200,0336,0330,0332,0227,0341,0331,0333,0337,",
+        "01231:0333,0200,0336,0330,0332,0350,0335,0304,0227,0340,0341,0350,0334,0304,0331,0333,0337,",
+        "01232:0333,0200,0336,0330,0332,0335,0227,0334,0341,0331,0333,0337,",
+        "01233:0333,0200,0336,0330,0332,0335,0350,0335,0304,0227,0340,0341,0334,0350,0334,0304,0331,0333,0337,",
+        "01234:0340,0333,0200,0336,0330,0332,0341,0340,0335,0335,0227,0335,0335,0331,0333,0337,",
+        "01235:0333,0200,0336,0330,0332,0334,0350,0334,0304,0227,0340,0341,0335,0350,0335,0304,0331,0333,0337,",
+        "01236:0333,0200,0336,0330,0332,0334,0227,0341,0340,0335,0331,0333,0337,",
+        "01237:0333,0200,0336,0330,0332,0350,0334,0304,0227,0341,0340,0350,0335,0304,0331,0333,0337,"
+    ];
+
+mapcanvas = document.getElementById("mapcanvas");
+
+ncanvas = document.getElementById("ncanvas");
+necanvas = document.getElementById("necanvas");
+ecanvas = document.getElementById("ecanvas");
+secanvas = document.getElementById("secanvas");
+scanvas = document.getElementById("scanvas");
+swcanvas = document.getElementById("swcanvas");
+wcanvas = document.getElementById("wcanvas");
+nwcanvas = document.getElementById("nwcanvas");
+
+square = innerWidth - 100;
+if(innerWidth > innerHeight){
+    square = innerHeight - 100;
+    document.getElementById("squarebox").style.width = (innerHeight).toString() + "px";
+    document.getElementById("squarebox").style.height = (innerHeight).toString() + "px";    
+    document.getElementById("nbox").style.left =  (0.5*innerHeight - 25).toString() + "px";
+    document.getElementById("ebox").style.top =  (0.5*innerHeight - 25).toString() + "px";    
+    document.getElementById("sbox").style.left =  (0.5*innerHeight - 25).toString() + "px";    
+    document.getElementById("wbox").style.top =  (0.5*innerHeight - 25).toString() + "px";        
+    document.getElementById("scroll").style.width = (innerWidth - innerHeight-20).toString() + "px";
+    document.getElementById("scroll").style.height =  (innerHeight - 40).toString() + "px";
+    
+}
+else{
+
+}
+
+
+var mapGVM = new GVM(mapcanvas,square,square);
+var nGVM = new GVM(ncanvas,50,50);//north
+var neGVM = new GVM(necanvas,50,50);//
+var eGVM = new GVM(ecanvas,50,50);//
+var seGVM = new GVM(secanvas,50,50);//
+var sGVM = new GVM(scanvas,50,50);//
+var swGVM = new GVM(swcanvas,50,50);//
+var wGVM = new GVM(wcanvas,50,50);//
+var nwGVM = new GVM(nwcanvas,50,50);//
+
+mapGVM.importbytecode(hypercube);    
+nGVM.importbytecode(hypercube);    
+neGVM.importbytecode(hypercube);    
+eGVM.importbytecode(hypercube);    
+seGVM.importbytecode(hypercube);    
+sGVM.importbytecode(hypercube);    
+swGVM.importbytecode(hypercube);    
+wGVM.importbytecode(hypercube);    
+nwGVM.importbytecode(hypercube);    
+
+mapGVM.importbytecode(shapes);    
+nGVM.importbytecode(shapes);    
+neGVM.importbytecode(shapes);    
+eGVM.importbytecode(shapes);    
+seGVM.importbytecode(shapes);    
+sGVM.importbytecode(shapes);    
+swGVM.importbytecode(shapes);    
+wGVM.importbytecode(shapes);    
+nwGVM.importbytecode(shapes);    
+
+nGVM.x0 = 1;
+nGVM.y0 = 49;
+nGVM.unit = 48;
+document.getElementById("nbox").style.borderColor = "red";
+document.getElementById("nbox").style.backgroundColor = "red";
+nGVM.drawGlyph("0300,01230,");
+
+eGVM.x0 = 1;
+eGVM.y0 = 49;
+eGVM.unit = 48;
+document.getElementById("ebox").style.borderColor = "red";
+document.getElementById("ebox").style.backgroundColor = "red";
+eGVM.drawGlyph("0300,01232,");
+
+sGVM.x0 = 1;
+sGVM.y0 = 49;
+sGVM.unit = 48;
+document.getElementById("sbox").style.borderColor = "red";
+document.getElementById("sbox").style.backgroundColor = "red";
+sGVM.drawGlyph("0300,01234,");
+
+wGVM.x0 = 1;
+wGVM.y0 = 49;
+wGVM.unit = 48;
+document.getElementById("wbox").style.borderColor = "red";
+document.getElementById("wbox").style.backgroundColor = "red";
+wGVM.drawGlyph("0300,01236,");
+
+position = "0300,";
+avatar = "0226,";
+
+mapGVM.x0 = square/2;
+mapGVM.y0 = square/2;
+mapGVM.unit = square/15;
+mapGVM.drawGlyph("0225," + position + avatar);
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    background-color:#9f8767;    
+}
+#squarebox{
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+#mapbox{
+    position:absolute;
+    left:50px;
+    top:50px;
+}
+.dirbox{
+    position:absolute;
+    cursor:pointer;
+    background-color:white;
+    z-index:1;
+    border:solid;
+    border-width:5px;
+}
+.dirbox:hover{
+    background-color:green;
+}
+.dirbox:active{
+    background-color:yellow;
+}
+
+#nbox,#nebox,#nwbox{
+    top:10px;
+}
+#sbox,#sebox,#swbox{
+    bottom:10px;
+}
+#ebox{
+    right:10px;
+}
+#wbox{
+    left:10px;
+}
+
+#scroll{
+    position:absolute;
+    right:5px;
+    bottom:5px;
+    background-color:#9f8767;    
+    font-family:Comic Sans MS;
+    overflow:scroll;
+    font-size:1.5em;
+    border:solid;
+    border-width:10px;
+}
+</style>
+</body>
+</html>
