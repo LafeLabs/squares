@@ -27,6 +27,7 @@
 </head>
 <body>
 <div id = "squarebox">
+    <img id = "mapimage" src="https://raw.githubusercontent.com/LafeLabs/squares/main/hyperspace/trashmagic/map-colfax-southplatte.png"/>
     <div id = "mapbox"><canvas id= "mapcanvas"></canvas></div>
     <div class = "dirbox" id = "nbox"><canvas id= "ncanvas"></canvas></div>
     <div class = "dirbox" id = "nebox"><canvas id= "necanvas"></canvas></div>
@@ -380,7 +381,11 @@ body{
 #wbox{
     left:10px;
 }
-
+#mapimage{
+    position:absolute;
+    z-index:-1;
+    width:100%;
+}
 #scroll{
     position:absolute;
     right:5px;
