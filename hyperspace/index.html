@@ -41,6 +41,10 @@
     
 <script>
 
+scrollname = "C";
+
+scrollicon = "0336,0331,0333,0337,0200,0336,0336,0331,0342,0335,0337,0201,0334,0337,0362,0203,0336,0203,0334,0203,0334,0336,0203,0364,0335,0335,0330,0333,0342,0335,0335,0330,0330,0330,0330,0330,0330,0342,0335,0335,0330,0332,0332,0332,0332,0332,0334,0334,0362,0203,0335,0203,0203,0335,0203,0203,0203,0203,0203,0203,0335,0203,0203,0335,0203,0354,0334,0334,0330,0332,0342,0335,0335,0330,0330,0330,0330,0330,0330,0342,0335,0335,0335,0331,0335,0335,0342,0335,0335,0334,0333,0333,0335,0342,0334,0330,0330,0330,0330,0330,0330,0335,0342,0334,0334,0330,0330,0342,0335,0335,0330,0330,0330,0330,0330,0342,0330,0330,0330,0342,0334,0334,0331,0331,0332,0332,0332,0332,0332,0330,0332,0342,0330,0330,0330,0342,0335,0330,0330,0330,0332,0332,0337,0337,";
+
 shapes = [
         "0220:0336,0336,0336,0331,0333,0337,0204,0336,0330,0332,0337,0337,0337,",
         "0221:0342,0330,0220,0331,0350,0334,0310,0337,0342,0330,0335,0336,0304,0313,0220,0333,0333,0220,0331,0332,0350,0335,0310,0337,0342,0334,0336,0304,0313,",
@@ -138,38 +142,184 @@ nwGVM.importbytecode(shapes);
 nGVM.x0 = 1;
 nGVM.y0 = 49;
 nGVM.unit = 48;
-document.getElementById("nbox").style.borderColor = "red";
-document.getElementById("nbox").style.backgroundColor = "red";
+//document.getElementById("nbox").style.borderColor = "red";
+//document.getElementById("nbox").style.backgroundColor = "red";
 nGVM.drawGlyph("0300,01230,");
+
+neGVM.x0 = 1;
+neGVM.y0 = 49;
+neGVM.unit = 48;
+neGVM.drawGlyph("0300,01231,");
 
 eGVM.x0 = 1;
 eGVM.y0 = 49;
 eGVM.unit = 48;
-document.getElementById("ebox").style.borderColor = "red";
-document.getElementById("ebox").style.backgroundColor = "red";
+//document.getElementById("ebox").style.borderColor = "red";
+//document.getElementById("ebox").style.backgroundColor = "red";
 eGVM.drawGlyph("0300,01232,");
+
+seGVM.x0 = 1;
+seGVM.y0 = 49;
+seGVM.unit = 48;
+seGVM.drawGlyph("0300,01233,");
 
 sGVM.x0 = 1;
 sGVM.y0 = 49;
 sGVM.unit = 48;
-document.getElementById("sbox").style.borderColor = "red";
-document.getElementById("sbox").style.backgroundColor = "red";
+//document.getElementById("sbox").style.borderColor = "red";
+//document.getElementById("sbox").style.backgroundColor = "red";
 sGVM.drawGlyph("0300,01234,");
+
+swGVM.x0 = 1;
+swGVM.y0 = 49;
+swGVM.unit = 48;
+swGVM.drawGlyph("0300,01235,");
 
 wGVM.x0 = 1;
 wGVM.y0 = 49;
 wGVM.unit = 48;
-document.getElementById("wbox").style.borderColor = "red";
-document.getElementById("wbox").style.backgroundColor = "red";
+//document.getElementById("wbox").style.borderColor = "red";
+//document.getElementById("wbox").style.backgroundColor = "red";
 wGVM.drawGlyph("0300,01236,");
 
+nwGVM.x0 = 1;
+nwGVM.y0 = 49;
+nwGVM.unit = 48;
+nwGVM.drawGlyph("0300,01237,");
+
 position = "0300,";
-avatar = "0226,";
+avatar = "0321,0226,";
 
 mapGVM.x0 = square/2;
 mapGVM.y0 = square/2;
 mapGVM.unit = square/15;
 mapGVM.drawGlyph("0225," + position + avatar);
+
+//document.getElementById("nwbox").style.display = "none";
+//document.getElementById("swbox").style.display = "none";
+//document.getElementById("sebox").style.display = "none";
+//document.getElementById("nebox").style.display = "none";
+numwords =0;
+function setscrollname(){
+    xpos = Math.round((mapGVM.x - mapGVM.x0)/mapGVM.unit);
+    ypos = Math.round((-mapGVM.y + mapGVM.y0)/mapGVM.unit);
+    scrollname = "scrollx" + xpos.toString() + "y" + ypos.toString();
+
+    scroll = "";
+    var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            scroll = this.responseText;
+            numwords = scroll.split(" ").length;
+            document.getElementById("scroll").value = scroll;  
+            if(numwords < 100){
+                document.getElementById("scroll").style.borderColor  = "black";
+                mapGVM.style.color1 = "black";
+            }
+            if(numwords > 100 && numwords < 200){
+                document.getElementById("scroll").style.borderColor  = "red";
+                mapGVM.style.color1 = "red";
+                
+            }
+            if(numwords > 200 && numwords < 300){
+                document.getElementById("scroll").style.borderColor  = "orange";
+                mapGVM.style.color1 = "orange";
+        
+            }
+            if(numwords > 300 && numwords < 400){
+                document.getElementById("scroll").style.borderColor  = "yellow";
+                mapGVM.style.color1 = "yellow";
+    
+            }
+            if(numwords > 400 && numwords < 500){
+                document.getElementById("scroll").style.borderColor  = "green";
+                mapGVM.style.color1 = "green";
+    
+            }
+            if(numwords > 700 && numwords < 600){
+                document.getElementById("scroll").style.borderColor  = "blue";
+                mapGVM.style.color1 = "blue";
+    
+            }
+            if(numwords > 600 && numwords < 700){
+                document.getElementById("scroll").style.borderColor  = "purple";
+                mapGVM.style.color1 = "purple";
+    
+            }
+            if(numwords > 700 && numwords < 800){
+                document.getElementById("scroll").style.borderColor  = "pink";
+                mapGVM.style.color1 = "pink";
+    
+            }
+            if(numwords > 800){
+                document.getElementById("scroll").style.borderColor  = "grey";
+                mapGVM.style.color1 = "grey";
+        
+            }
+
+            mapGVM.drawGlyph("0225," + position + avatar);
+
+
+        }
+    };
+    httpc.open("GET", "fileloader.php?filename=scrolls/" + scrollname, true);
+    httpc.send();
+
+}
+
+
+document.getElementById("scroll").onkeyup = function() {
+    scroll = this.value;
+    data = encodeURIComponent(this.value);
+    var httpc = new XMLHttpRequest();
+    var url = "filesaver.php";        
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+    httpc.send("data="+data+"&filename=scrolls/" + scrollname);//send text to filesaver.php
+}
+
+setscrollname();
+
+ncanvas.onclick = function(){
+    position += "0230,";
+    setscrollname();
+    
+}
+necanvas.onclick = function(){
+    position += "0231,";
+    setscrollname();
+
+}
+ecanvas.onclick = function(){
+    position += "0232,";
+    setscrollname();
+
+}
+secanvas.onclick = function(){
+    position += "0233,";
+    setscrollname();
+
+}
+scanvas.onclick = function(){
+    position += "0234,";
+    setscrollname();
+}
+swcanvas.onclick = function(){
+    position += "0235,";
+    setscrollname();
+
+}
+wcanvas.onclick = function(){
+    position += "0236,";
+    setscrollname();
+
+}
+nwcanvas.onclick = function(){
+    position += "0237,";
+    setscrollname();
+
+}
+
 
 </script>
 <style>
@@ -190,7 +340,6 @@ body{
 .dirbox{
     position:absolute;
     cursor:pointer;
-    background-color:white;
     z-index:1;
     border:solid;
     border-width:5px;
@@ -202,12 +351,29 @@ body{
     background-color:yellow;
 }
 
-#nbox,#nebox,#nwbox{
+#nbox{
     top:10px;
 }
-#sbox,#sebox,#swbox{
+#nebox{
+    top:10px;
+    right:10px;
+}
+#nwbox{
+    top:10px;
+    left:10px;
+}
+#sbox{
     bottom:10px;
 }
+#sebox{
+    bottom:10px;
+    right:10px;
+}
+#swbox{
+    bottom:10px;
+    left:10px;
+}
+
 #ebox{
     right:10px;
 }
