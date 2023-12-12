@@ -51,6 +51,8 @@
         "trashmagic.js",
         "trashrobot-board1.txt",
         "trashrobot.html",
+        "trashset.html",
+        "trashset.txt",
         "trimsquares.html",
         "view.html",
         "voice-of-the-slime.html",
