@@ -241,7 +241,28 @@ Then when it's all set up, enable https with lets encrypt by way of nginx proxy 
  - push your code to your github repo
  - use the new replicator code on your github repo to replicate out that instance to all other servers(linux, windows, mac, android) and forks
  - when you figure this out, make youtube videos showing other people how to copy the whole system, tell someone about those videos so that we can all link to them
- - 
+
+
+some information on doing this under windows linux subsystem
+
+We want to make it easy to just type "s" at the command line to make a php local server. To do that we go to the home directory and then open .bashrc
+
+```
+cd ~
+sudo nano .bashrc
+```
+then add to the list of aliases:
+
+```
+alias s='sudo php -S localhost:80'
+```
+
+Then at the end of the file add this:
+
+```
+cd /mnt/c/Users/lafel/Documents/GitHub/[name of your github repository]
+```
+
 
  ### Replicate Phone Stand
 
